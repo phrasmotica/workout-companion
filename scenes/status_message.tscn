@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3ny8dq1xas7h"]
+
+[ext_resource type="Script" uid="uid://b5wq6ocoud721" path="res://scripts/status_message.gd" id="1_0pn5e"]
+
+[node name="StatusMessage" type="VBoxContainer"]
+script = ExtResource("1_0pn5e")
+
+[node name="PressToStartLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Press SPACE to start..."
+horizontal_alignment = 1
+
+[node name="GetReadyLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Get ready..."
+horizontal_alignment = 1

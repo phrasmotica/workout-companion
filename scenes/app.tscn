@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://v6tj6nloub77"]
+
+[ext_resource type="Script" uid="uid://dphjta0fnof0s" path="res://scripts/app.gd" id="1_fee65"]
+[ext_resource type="PackedScene" uid="uid://dq00nnlosn23m" path="res://scenes/key_listener.tscn" id="1_hu2qg"]
+[ext_resource type="PackedScene" uid="uid://dtajkb5vd5nal" path="res://scenes/flasher.tscn" id="1_jv4sb"]
+[ext_resource type="Script" uid="uid://x4gkwisjojn1" path="res://scripts/workout.gd" id="2_vchjt"]
+[ext_resource type="PackedScene" uid="uid://jw8x56hddkq3" path="res://scenes/countdown.tscn" id="3_uvl1u"]
+
+[sub_resource type="Resource" id="Resource_a7fap"]
+script = ExtResource("2_vchjt")
+reps = 20
+
+[node name="App" type="Node2D"]
+script = ExtResource("1_fee65")
+workout = SubResource("Resource_a7fap")
+
+[node name="KeyListener" parent="." instance=ExtResource("1_hu2qg")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Countdown" parent="MarginContainer" instance=ExtResource("3_uvl1u")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Flasher" parent="MarginContainer" instance=ExtResource("1_jv4sb")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="pressed_start" from="KeyListener" to="." method="_on_key_listener_pressed_start"]
+[connection signal="cancelled" from="MarginContainer/Countdown" to="." method="_on_countdown_cancelled"]
+[connection signal="finished" from="MarginContainer/Countdown" to="." method="_on_countdown_finished"]
+[connection signal="flashed" from="MarginContainer/Flasher" to="." method="_on_flasher_flashed"]

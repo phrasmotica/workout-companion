@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn4n3g8r0yi03"]
+
+[ext_resource type="PackedScene" uid="uid://dtajkb5vd5nal" path="res://scenes/flasher.tscn" id="1_duep3"]
+
+[node name="FlasherTest" type="Node2D"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Flasher" parent="MarginContainer" instance=ExtResource("1_duep3")]
+layout_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(40, 160)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="FlashIntervalSlider" type="VSlider" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[connection signal="value_changed" from="CanvasLayer/MarginContainer/VBoxContainer/FlashIntervalSlider" to="MarginContainer/Flasher" method="_on_flash_interval_slider_value_changed"]

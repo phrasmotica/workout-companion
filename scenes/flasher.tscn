@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtajkb5vd5nal"]
+
+[ext_resource type="Script" uid="uid://dl80c211l56qv" path="res://scripts/flasher.gd" id="1_tu17n"]
+
+[node name="Flasher" type="ColorRect"]
+custom_minimum_size = Vector2(400, 400)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.784314, 0.196078, 1)
+script = ExtResource("1_tu17n")

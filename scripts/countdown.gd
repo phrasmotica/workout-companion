@@ -1,7 +1,12 @@
+@tool
 class_name Countdown extends ProgressBar
 
 @export
-var duration_seconds := 3
+var duration_seconds := 3:
+	set(value):
+		duration_seconds = value
+
+		max_value = duration_seconds
 
 @onready
 var timer: Timer = %Timer

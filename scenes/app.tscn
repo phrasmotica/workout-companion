@@ -8,13 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://c3ny8dq1xas7h" path="res://scenes/status_message.tscn" id="4_k6d74"]
 [ext_resource type="PackedScene" uid="uid://cpcr2u4jlkqua" path="res://scenes/rep_counter.tscn" id="5_ljqyw"]
 
-[sub_resource type="Resource" id="Resource_a7fap"]
+[sub_resource type="Resource" id="Resource_ljqyw"]
 script = ExtResource("2_vchjt")
-reps = 20
+sets = 3
+reps = 5
+metadata/_custom_type_script = "uid://x4gkwisjojn1"
 
 [node name="App" type="Node2D" node_paths=PackedStringArray("status_message", "rep_counter")]
 script = ExtResource("1_fee65")
-workout = SubResource("Resource_a7fap")
+workout = SubResource("Resource_ljqyw")
 status_message = NodePath("MarginContainer/VBoxContainer/StatusMessage")
 rep_counter = NodePath("MarginContainer/VBoxContainer/RepCounter")
 
@@ -35,6 +37,7 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 count = 0
+max_count = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -43,6 +46,15 @@ size_flags_vertical = 3
 [node name="Countdown" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_uvl1u")]
 unique_name_in_owner = true
 layout_mode = 2
+value = 0.0
+
+[node name="PauseCountdown" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_uvl1u")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+max_value = 5.0
+value = 0.0
+duration_seconds = 5
 
 [node name="Flasher" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("1_jv4sb")]
 unique_name_in_owner = true
@@ -52,4 +64,6 @@ layout_mode = 2
 [connection signal="pressed_start" from="KeyListener" to="." method="_on_key_listener_pressed_start"]
 [connection signal="cancelled" from="MarginContainer/VBoxContainer/MarginContainer/Countdown" to="." method="_on_countdown_cancelled"]
 [connection signal="finished" from="MarginContainer/VBoxContainer/MarginContainer/Countdown" to="." method="_on_countdown_finished"]
+[connection signal="cancelled" from="MarginContainer/VBoxContainer/MarginContainer/PauseCountdown" to="." method="_on_countdown_cancelled"]
+[connection signal="finished" from="MarginContainer/VBoxContainer/MarginContainer/PauseCountdown" to="." method="_on_countdown_finished"]
 [connection signal="flashed" from="MarginContainer/VBoxContainer/MarginContainer/Flasher" to="." method="_on_flasher_flashed"]

@@ -19,3 +19,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Get ready..."
 horizontal_alignment = 1
+
+[node name="PausingLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Pausing..."
+horizontal_alignment = 1

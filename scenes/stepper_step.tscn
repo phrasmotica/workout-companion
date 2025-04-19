@@ -8,6 +8,8 @@ theme = ExtResource("1_p0yhv")
 theme_override_constants/separation = 0
 script = ExtResource("2_8v6er")
 show_leading_line = true
+highlight_colour = Color(0, 0.705882, 0, 1)
+default_colour = Color(0.8, 0.8, 0.8, 1)
 
 [node name="LeadingLine" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -17,6 +19,7 @@ size_flags_vertical = 4
 color = Color(0.8, 0.8, 0.8, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_type_variation = &"StepperPanelContainer"

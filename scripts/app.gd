@@ -88,7 +88,6 @@ func move_to_flasher():
 		rep_counter.stop()
 
 	if set_counter:
-		set_counter.show()
 		set_counter.inc()
 
 func pause() -> void:
@@ -126,7 +125,6 @@ func stop() -> void:
 		rep_counter.stop()
 
 	if set_counter:
-		set_counter.hide()
 		set_counter.stop()
 
 func _on_flasher_flashed() -> void:

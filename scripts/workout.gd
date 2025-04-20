@@ -2,29 +2,15 @@
 class_name Workout extends Resource
 
 @export
-var sets: int = 1:
+var phases: Array[WorkoutPhase] = []:
     set(value):
-        sets = value
+        phases = value
 
         emit_changed()
 
-@export
-var reps: int = 20:
-    set(value):
-        reps = value
+        for p in phases:
+            if not p.changed.is_connected(emit_changed):
+                p.changed.connect(emit_changed)
 
-        emit_changed()
-
-@export_range(0, 1)
-var rep_duration_seconds: float = 1:
-    set(value):
-        rep_duration_seconds = value
-
-        emit_changed()
-
-@export_range(0, 120)
-var pause_duration_seconds: float = 60:
-    set(value):
-        pause_duration_seconds = value
-
-        emit_changed()
+func get_current_phase() -> WorkoutPhase:
+    return phases[0] if phases.size() > 0 else null

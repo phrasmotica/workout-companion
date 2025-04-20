@@ -1,11 +1,17 @@
-[gd_resource type="Resource" script_class="Workout" load_steps=2 format=3 uid="uid://dqjcyk72b8sak"]
+[gd_resource type="Resource" script_class="Workout" load_steps=4 format=3 uid="uid://dqjcyk72b8sak"]
 
-[ext_resource type="Script" uid="uid://x4gkwisjojn1" path="res://scripts/workout.gd" id="1_frvoe"]
+[ext_resource type="Script" uid="uid://caw4fqn70yms5" path="res://scripts/workout_phase.gd" id="1_rg5h4"]
+[ext_resource type="Script" uid="uid://x4gkwisjojn1" path="res://scripts/workout.gd" id="2_cd2m1"]
+
+[sub_resource type="Resource" id="Resource_6wxpa"]
+script = ExtResource("1_rg5h4")
+sets = 3
+reps = 4
+rep_duration_seconds = 1.0
+pause_duration_seconds = 60.0
+metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
 [resource]
-script = ExtResource("1_frvoe")
-sets = 4
-reps = 3
-rep_duration_seconds = 1.0
-pause_duration_seconds = 5.0
+script = ExtResource("2_cd2m1")
+phases = Array[ExtResource("1_rg5h4")]([SubResource("Resource_6wxpa")])
 metadata/_custom_type_script = "uid://x4gkwisjojn1"

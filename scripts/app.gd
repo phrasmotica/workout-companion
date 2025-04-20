@@ -37,17 +37,22 @@ var _sets_remaining := 0
 var _reps_remaining := 0
 
 func _handle_workout_changed() -> void:
+	if not workout:
+		return
+
+	var phase := workout.get_current_phase()
+
 	if set_counter:
-		set_counter.step_count = workout.sets
+		set_counter.step_count = phase.sets
 
 	if rep_counter:
-		rep_counter.max_count = workout.reps
+		rep_counter.max_count = phase.reps
 
 	if flasher:
-		flasher.wait_time_seconds = workout.rep_duration_seconds
+		flasher.wait_time_seconds = phase.rep_duration_seconds
 
 	if pause_countdown:
-		pause_countdown.duration_seconds = int(workout.pause_duration_seconds)
+		pause_countdown.duration_seconds = int(phase.pause_duration_seconds)
 
 func do_countdown():
 	if flasher:
@@ -65,7 +70,9 @@ func do_countdown():
 		status_message.show()
 		status_message.message = StatusMessage.MessageType.GET_READY
 
-	_sets_remaining = workout.sets
+	var phase := workout.get_current_phase()
+
+	_sets_remaining = phase.sets
 
 func move_to_flasher():
 	if countdown:
@@ -80,7 +87,9 @@ func move_to_flasher():
 
 		print("move_to_flasher: reset pause_countdown")
 
-	_reps_remaining = workout.reps
+	var phase := workout.get_current_phase()
+
+	_reps_remaining = phase.reps
 
 	if flasher:
 		flasher.show()
@@ -109,7 +118,9 @@ func pause() -> void:
 		status_message.show()
 		status_message.message = StatusMessage.MessageType.PAUSING
 
-	print("Pausing for %d second(s)" % workout.pause_duration_seconds)
+	var phase := workout.get_current_phase()
+
+	print("Pausing for %d second(s)" % phase.pause_duration_seconds)
 
 	if rep_counter:
 		rep_counter.hide()

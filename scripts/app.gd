@@ -129,14 +129,14 @@ func stop() -> void:
 
 func _on_flasher_flashed() -> void:
 	if _reps_remaining <= 0:
+		_sets_remaining -= 1
+
 		if _sets_remaining <= 0:
 			print("Finished last set, stopping")
 
 			stop()
 
 		else:
-			_sets_remaining -= 1
-
 			print("%d set(s) remaining, pausing" % _sets_remaining)
 
 			pause()

@@ -7,6 +7,8 @@ var workout: Workout:
 		if workout != value:
 			workout = value
 
+		_handle_workout_changed()
+
 		if not workout.changed.is_connected(_handle_workout_changed):
 			workout.changed.connect(_handle_workout_changed)
 

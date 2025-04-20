@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://v6tj6nloub77"]
+[gd_scene load_steps=10 format=3 uid="uid://v6tj6nloub77"]
 
 [ext_resource type="Script" uid="uid://dphjta0fnof0s" path="res://scripts/app.gd" id="1_fee65"]
 [ext_resource type="PackedScene" uid="uid://dq00nnlosn23m" path="res://scenes/key_listener.tscn" id="1_hu2qg"]
@@ -7,17 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://jw8x56hddkq3" path="res://scenes/countdown.tscn" id="3_uvl1u"]
 [ext_resource type="PackedScene" uid="uid://c3ny8dq1xas7h" path="res://scenes/status_message.tscn" id="4_k6d74"]
 [ext_resource type="PackedScene" uid="uid://cpcr2u4jlkqua" path="res://scenes/rep_counter.tscn" id="5_ljqyw"]
+[ext_resource type="PackedScene" uid="uid://ctqbv83gyj2ql" path="res://scenes/stepper.tscn" id="6_jv7dx"]
 
 [sub_resource type="Resource" id="Resource_ljqyw"]
 script = ExtResource("2_vchjt")
-sets = 3
+sets = 11
 reps = 5
 metadata/_custom_type_script = "uid://x4gkwisjojn1"
 
-[node name="App" type="Node2D" node_paths=PackedStringArray("status_message", "rep_counter")]
+[node name="App" type="Node2D" node_paths=PackedStringArray("status_message", "set_counter", "rep_counter")]
 script = ExtResource("1_fee65")
 workout = SubResource("Resource_ljqyw")
 status_message = NodePath("MarginContainer/VBoxContainer/StatusMessage")
+set_counter = NodePath("MarginContainer/VBoxContainer/SetCounter")
 rep_counter = NodePath("MarginContainer/VBoxContainer/RepCounter")
 
 [node name="KeyListener" parent="." instance=ExtResource("1_hu2qg")]
@@ -25,10 +27,17 @@ rep_counter = NodePath("MarginContainer/VBoxContainer/RepCounter")
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
+theme_override_constants/margin_top = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
+
+[node name="SetCounter" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_jv7dx")]
+visible = false
+layout_mode = 2
+alignment = 1
+step_count = 11
 
 [node name="StatusMessage" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_k6d74")]
 layout_mode = 2

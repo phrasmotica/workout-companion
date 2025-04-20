@@ -18,7 +18,7 @@ var starting_number := 3:
 @export
 var highlighted_step := 1:
     set(value):
-        highlighted_step = clampi(value, 1, step_count)
+        highlighted_step = clampi(value, 0, step_count)
 
         _refresh()
 
@@ -27,6 +27,12 @@ var step_scene: PackedScene = load("res://scenes/stepper_step.tscn")
 
 func _ready() -> void:
     _refresh()
+
+func inc() -> void:
+    highlighted_step += 1
+
+func stop() -> void:
+    highlighted_step = 0
 
 func _refresh() -> void:
     if not step_scene:

@@ -17,6 +17,9 @@ var start_immediately := false
 var status_message: StatusMessage
 
 @export
+var set_counter: Stepper
+
+@export
 var rep_counter: RepCounter
 
 @onready
@@ -32,6 +35,9 @@ var _sets_remaining := 0
 var _reps_remaining := 0
 
 func _handle_workout_changed() -> void:
+	if set_counter:
+		set_counter.step_count = workout.sets
+
 	if rep_counter:
 		rep_counter.max_count = workout.reps
 
@@ -81,6 +87,10 @@ func move_to_flasher():
 		rep_counter.show()
 		rep_counter.stop()
 
+	if set_counter:
+		set_counter.show()
+		set_counter.inc()
+
 func pause() -> void:
 	if flasher:
 		flasher.hide()
@@ -114,6 +124,10 @@ func stop() -> void:
 	if rep_counter:
 		rep_counter.hide()
 		rep_counter.stop()
+
+	if set_counter:
+		set_counter.hide()
+		set_counter.stop()
 
 func _on_flasher_flashed() -> void:
 	if _reps_remaining <= 0:

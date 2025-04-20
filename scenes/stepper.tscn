@@ -10,11 +10,11 @@ theme_override_constants/separation = 0
 script = ExtResource("2_k1r7q")
 step_count = 4
 starting_number = 1
+highlighted_step = 0
 
 [node name="StepperStep1" parent="." instance=ExtResource("2_xv8sx")]
 layout_mode = 2
 show_leading_line = false
-highlighted = true
 
 [node name="StepperStep2" parent="." instance=ExtResource("2_xv8sx")]
 layout_mode = 2

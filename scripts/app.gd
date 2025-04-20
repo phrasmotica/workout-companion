@@ -41,6 +41,12 @@ func _handle_workout_changed() -> void:
 	if rep_counter:
 		rep_counter.max_count = workout.reps
 
+	if flasher:
+		flasher.wait_time_seconds = workout.rep_duration_seconds
+
+	if pause_countdown:
+		pause_countdown.duration_seconds = int(workout.pause_duration_seconds)
+
 func do_countdown():
 	if flasher:
 		flasher.hide()
@@ -101,6 +107,8 @@ func pause() -> void:
 		status_message.show()
 		status_message.message = StatusMessage.MessageType.PAUSING
 
+	print("Pausing for %d second(s)" % workout.pause_duration_seconds)
+
 	if rep_counter:
 		rep_counter.hide()
 		rep_counter.stop()
@@ -137,7 +145,7 @@ func _on_flasher_flashed() -> void:
 			stop()
 
 		else:
-			print("%d set(s) remaining, pausing" % _sets_remaining)
+			print("%d set(s) remaining" % _sets_remaining)
 
 			pause()
 	else:

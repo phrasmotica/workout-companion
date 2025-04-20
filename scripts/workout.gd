@@ -14,3 +14,17 @@ var reps: int = 20:
         reps = value
 
         emit_changed()
+
+@export_range(0, 1)
+var rep_duration_seconds: float = 1:
+    set(value):
+        rep_duration_seconds = value
+
+        emit_changed()
+
+@export_range(0, 120)
+var pause_duration_seconds: float = 60:
+    set(value):
+        pause_duration_seconds = value
+
+        emit_changed()

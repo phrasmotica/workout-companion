@@ -1,7 +1,7 @@
 class_name Flasher extends ColorRect
 
 ## The time between flashes.
-@export_range(1.0, 5.0)
+@export_range(0.1, 5.0)
 var wait_time_seconds := 1.0
 
 signal flashed

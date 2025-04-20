@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Workout" load_steps=2 format=3 uid="uid://ct00hl5w1lmxt"]
+
+[ext_resource type="Script" uid="uid://x4gkwisjojn1" path="res://scripts/workout.gd" id="1_d25ye"]
+
+[resource]
+script = ExtResource("1_d25ye")
+sets = 11
+reps = 20
+metadata/_custom_type_script = "uid://x4gkwisjojn1"

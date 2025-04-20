@@ -1,23 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://v6tj6nloub77"]
+[gd_scene load_steps=9 format=3 uid="uid://v6tj6nloub77"]
 
 [ext_resource type="Script" uid="uid://dphjta0fnof0s" path="res://scripts/app.gd" id="1_fee65"]
 [ext_resource type="PackedScene" uid="uid://dq00nnlosn23m" path="res://scenes/key_listener.tscn" id="1_hu2qg"]
 [ext_resource type="PackedScene" uid="uid://dtajkb5vd5nal" path="res://scenes/flasher.tscn" id="1_jv4sb"]
-[ext_resource type="Script" uid="uid://x4gkwisjojn1" path="res://scripts/workout.gd" id="2_vchjt"]
+[ext_resource type="Resource" uid="uid://dqjcyk72b8sak" path="res://data/workout_3x4.tres" id="2_jv7dx"]
 [ext_resource type="PackedScene" uid="uid://jw8x56hddkq3" path="res://scenes/countdown.tscn" id="3_uvl1u"]
 [ext_resource type="PackedScene" uid="uid://c3ny8dq1xas7h" path="res://scenes/status_message.tscn" id="4_k6d74"]
 [ext_resource type="PackedScene" uid="uid://cpcr2u4jlkqua" path="res://scenes/rep_counter.tscn" id="5_ljqyw"]
 [ext_resource type="PackedScene" uid="uid://ctqbv83gyj2ql" path="res://scenes/stepper.tscn" id="6_jv7dx"]
 
-[sub_resource type="Resource" id="Resource_ljqyw"]
-script = ExtResource("2_vchjt")
-sets = 11
-reps = 5
-metadata/_custom_type_script = "uid://x4gkwisjojn1"
-
 [node name="App" type="Node2D" node_paths=PackedStringArray("status_message", "set_counter", "rep_counter")]
 script = ExtResource("1_fee65")
-workout = SubResource("Resource_ljqyw")
+workout = ExtResource("2_jv7dx")
 status_message = NodePath("MarginContainer/VBoxContainer/StatusMessage")
 set_counter = NodePath("MarginContainer/VBoxContainer/SetCounter")
 rep_counter = NodePath("MarginContainer/VBoxContainer/RepCounter")
@@ -36,7 +30,6 @@ theme_override_constants/separation = 20
 [node name="SetCounter" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_jv7dx")]
 layout_mode = 2
 alignment = 1
-step_count = 11
 
 [node name="StatusMessage" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_k6d74")]
 layout_mode = 2
@@ -44,8 +37,7 @@ layout_mode = 2
 [node name="RepCounter" parent="MarginContainer/VBoxContainer" instance=ExtResource("5_ljqyw")]
 visible = false
 layout_mode = 2
-count = 0
-max_count = 5
+max_count = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

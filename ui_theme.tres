@@ -1,6 +1,28 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://pxiigjg7x2e4"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://pxiigjg7x2e4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmjyp"]
+bg_color = Color(0, 0.705882, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_touxu"]
+bg_color = Color(0.393085, 0.393086, 0.393085, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pn01"]
 bg_color = Color(0, 0.705882, 0, 1)
 border_width_left = 2
 border_width_top = 2
@@ -26,8 +48,12 @@ corner_radius_bottom_left = 10
 font_names = PackedStringArray("Osaka")
 
 [resource]
+CompletedStepperPanelContainer/base_type = &"PanelContainer"
+CompletedStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_dmjyp")
+FutureStepperPanelContainer/base_type = &"PanelContainer"
+FutureStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_touxu")
 HighlightedStepperPanelContainer/base_type = &"PanelContainer"
-HighlightedStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_dmjyp")
+HighlightedStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_2pn01")
 StepperPanelContainer/base_type = &"PanelContainer"
 StepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_potcg")
 StepperStepLabel/base_type = &"Label"

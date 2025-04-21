@@ -9,16 +9,16 @@ var step_count := 3:
         _refresh()
 
 @export
-var starting_number := 3:
+var starting_number := 1:
     set(value):
         starting_number = maxi(value, 0)
 
         _refresh()
 
 @export
-var highlighted_step := 1:
+var highlighted_step := -1:
     set(value):
-        highlighted_step = clampi(value, 0, step_count)
+        highlighted_step = clampi(value, -1, step_count)
 
         _refresh()
 
@@ -54,9 +54,18 @@ func _refresh() -> void:
 
         step.number = starting_number + i
         step.show_leading_line = i > 0
-        step.highlighted = i + 1 <= highlighted_step
+        step.look = _compute_step_look(i)
 
     if steps.size() > step_count:
         for i in range(step_count, steps.size()):
             print("Cleaning up child %d" % i)
             get_child(i).queue_free()
+
+func _compute_step_look(index: int) -> StepperStep.Look:
+    if index < highlighted_step:
+        return StepperStep.Look.COMPLETED
+
+    if index == highlighted_step:
+        return StepperStep.Look.CURRENT
+
+    return StepperStep.Look.FUTURE

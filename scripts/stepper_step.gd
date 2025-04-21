@@ -1,6 +1,8 @@
 @tool
 class_name StepperStep extends HBoxContainer
 
+enum Look { FUTURE, CURRENT, COMPLETED }
+
 @export
 var number := 1:
     set(value):
@@ -16,16 +18,9 @@ var show_leading_line := false:
         _refresh()
 
 @export
-var highlighted := false:
+var look := Look.FUTURE:
     set(value):
-        highlighted = value
-
-        _refresh()
-
-@export
-var highlight_colour: Color:
-    set(value):
-        highlight_colour = value
+        look = value
 
         _refresh()
 
@@ -33,6 +28,13 @@ var highlight_colour: Color:
 var default_colour: Color:
     set(value):
         default_colour = value
+
+        _refresh()
+
+@export
+var completed_colour: Color:
+    set(value):
+        completed_colour = value
 
         _refresh()
 
@@ -48,7 +50,7 @@ var label: Label = %Label
 func _refresh() -> void:
     if leading_line:
         leading_line.visible = show_leading_line
-        leading_line.color = highlight_colour if highlighted else default_colour
+        leading_line.color = _compute_line_colour()
 
     if step_background:
         step_background.theme_type_variation = _compute_panel_style()
@@ -56,7 +58,17 @@ func _refresh() -> void:
     if label:
         label.text = str(number)
 
+func _compute_line_colour() -> Color:
+    if look == Look.COMPLETED:
+        return completed_colour
+
+    return default_colour
+
 func _compute_panel_style() -> StringName:
-    return \
-        "HighlightedStepperPanelContainer" if highlighted else \
-        "StepperPanelContainer"
+    if look == Look.FUTURE:
+        return "FutureStepperPanelContainer"
+
+    if look == Look.COMPLETED:
+        return "CompletedStepperPanelContainer"
+
+    return "StepperPanelContainer"

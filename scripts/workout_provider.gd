@@ -25,9 +25,6 @@ func get_phase(index: int) -> WorkoutPhase:
 
     return workout.phases[index]
 
-func get_current_phase() -> WorkoutPhase:
-    return workout.get_current_phase() if workout else null
-
 func get_phase_count() -> int:
     return workout.phases.size() if workout else 0
 

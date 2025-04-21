@@ -25,6 +25,7 @@ var pause_countdown: Countdown = %PauseCountdown
 @onready
 var flasher: Flasher = %Flasher
 
+var _current_phase := -1
 var _sets_remaining := 0
 var _reps_remaining := 0
 
@@ -32,7 +33,11 @@ func _handle_workout_changed() -> void:
 	if not workout_provider:
 		return
 
-	var phase := workout_provider.get_current_phase()
+	_current_phase = -1
+	_sets_remaining = 0
+	_reps_remaining = 0
+
+	var phase := workout_provider.get_phase(_current_phase)
 
 	if not phase:
 		return
@@ -46,7 +51,7 @@ func _handle_workout_changed() -> void:
 	if pause_countdown:
 		pause_countdown.duration_seconds = int(phase.pause_duration_seconds)
 
-func do_countdown():
+func do_countdown() -> void:
 	if flasher:
 		flasher.hide()
 
@@ -62,8 +67,9 @@ func do_countdown():
 		status_message.show()
 		status_message.message = StatusMessage.MessageType.GET_READY
 
-	var phase := workout_provider.get_current_phase()
+	_current_phase = 0
 
+	var phase := workout_provider.get_phase(_current_phase)
 	_sets_remaining = phase.sets
 
 func move_to_flasher():
@@ -79,7 +85,7 @@ func move_to_flasher():
 
 		print("move_to_flasher: reset pause_countdown")
 
-	var phase := workout_provider.get_current_phase()
+	var phase := workout_provider.get_phase(_current_phase)
 
 	_reps_remaining = phase.reps
 
@@ -110,7 +116,7 @@ func pause() -> void:
 		status_message.show()
 		status_message.message = StatusMessage.MessageType.PAUSING
 
-	var phase := workout_provider.get_current_phase()
+	var phase := workout_provider.get_phase(_current_phase)
 
 	print("Pausing for %d second(s)" % phase.pause_duration_seconds)
 
@@ -119,6 +125,7 @@ func pause() -> void:
 		rep_counter.stop()
 
 	if pause_countdown:
+		pause_countdown.duration_seconds = int(phase.pause_duration_seconds)
 		pause_countdown.show()
 		pause_countdown.start_stop()
 
@@ -148,10 +155,22 @@ func _on_flasher_flashed() -> void:
 		_sets_remaining -= 1
 
 		if _sets_remaining <= 0:
-			print("Finished last set, stopping")
+			print("Finished last set of phase %d" % _current_phase)
 
-			stop()
+			_current_phase += 1
 
+			if _current_phase >= workout_provider.get_phase_count():
+				print("Stopping")
+
+				stop()
+			else:
+				print("%d set(s) remaining" % _sets_remaining)
+
+				var next_phase := workout_provider.get_phase(_current_phase)
+
+				_sets_remaining = next_phase.sets
+
+				pause()
 		else:
 			print("%d set(s) remaining" % _sets_remaining)
 

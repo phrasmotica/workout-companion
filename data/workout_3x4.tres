@@ -8,7 +8,7 @@ script = ExtResource("1_rg5h4")
 sets = 3
 reps = 4
 rep_duration_seconds = 1.0
-pause_duration_seconds = 60.0
+pause_duration_seconds = 5.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
 [resource]

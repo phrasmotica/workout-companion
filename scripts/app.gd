@@ -5,7 +5,14 @@ extends Node2D
 var start_immediately := false
 
 @export
-var workout_provider: WorkoutProvider
+var workout_provider: WorkoutProvider:
+	set(value):
+		workout_provider = value
+
+		if not workout_provider.workout_changed.is_connected(_handle_workout_changed):
+			workout_provider.workout_changed.connect(_handle_workout_changed)
+
+		_refresh()
 
 @export
 var status_message: StatusMessage
@@ -29,7 +36,10 @@ var _current_phase := -1
 var _sets_remaining := 0
 var _reps_remaining := 0
 
-func _handle_workout_changed() -> void:
+func _handle_workout_changed(_workout: Workout) -> void:
+	_refresh()
+
+func _refresh() -> void:
 	if not workout_provider:
 		return
 
@@ -37,7 +47,7 @@ func _handle_workout_changed() -> void:
 	_sets_remaining = 0
 	_reps_remaining = 0
 
-	var phase := workout_provider.get_phase(_current_phase)
+	var phase := workout_provider.get_phase(0)
 
 	if not phase:
 		return
@@ -169,6 +179,9 @@ func _on_flasher_flashed() -> void:
 				var next_phase := workout_provider.get_phase(_current_phase)
 
 				_sets_remaining = next_phase.sets
+
+				if flasher:
+					flasher.wait_time_seconds = next_phase.rep_duration_seconds
 
 				pause()
 		else:

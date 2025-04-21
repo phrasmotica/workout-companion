@@ -2,24 +2,16 @@
 extends Node2D
 
 @export
-var workout: Workout:
-	set(value):
-		if workout != value:
-			workout = value
-
-		_handle_workout_changed()
-
-		if not workout.changed.is_connected(_handle_workout_changed):
-			workout.changed.connect(_handle_workout_changed)
+var start_immediately := false
 
 @export
-var start_immediately := false
+var workout_provider: WorkoutProvider
 
 @export
 var status_message: StatusMessage
 
 @export
-var set_counter: Stepper
+var phase_counter: PhaseCounter
 
 @export
 var rep_counter: RepCounter
@@ -37,13 +29,13 @@ var _sets_remaining := 0
 var _reps_remaining := 0
 
 func _handle_workout_changed() -> void:
-	if not workout:
+	if not workout_provider:
 		return
 
-	var phase := workout.get_current_phase()
+	var phase := workout_provider.get_current_phase()
 
-	if set_counter:
-		set_counter.step_count = phase.sets
+	if not phase:
+		return
 
 	if rep_counter:
 		rep_counter.max_count = phase.reps
@@ -70,7 +62,7 @@ func do_countdown():
 		status_message.show()
 		status_message.message = StatusMessage.MessageType.GET_READY
 
-	var phase := workout.get_current_phase()
+	var phase := workout_provider.get_current_phase()
 
 	_sets_remaining = phase.sets
 
@@ -87,7 +79,7 @@ func move_to_flasher():
 
 		print("move_to_flasher: reset pause_countdown")
 
-	var phase := workout.get_current_phase()
+	var phase := workout_provider.get_current_phase()
 
 	_reps_remaining = phase.reps
 
@@ -104,8 +96,8 @@ func move_to_flasher():
 		rep_counter.show()
 		rep_counter.stop()
 
-	if set_counter:
-		set_counter.inc()
+	if phase_counter:
+		phase_counter.inc()
 
 func pause() -> void:
 	if flasher:
@@ -118,7 +110,7 @@ func pause() -> void:
 		status_message.show()
 		status_message.message = StatusMessage.MessageType.PAUSING
 
-	var phase := workout.get_current_phase()
+	var phase := workout_provider.get_current_phase()
 
 	print("Pausing for %d second(s)" % phase.pause_duration_seconds)
 
@@ -130,8 +122,8 @@ func pause() -> void:
 		pause_countdown.show()
 		pause_countdown.start_stop()
 
-	if set_counter:
-		set_counter.complete()
+	if phase_counter:
+		phase_counter.complete()
 
 func stop() -> void:
 	if flasher:
@@ -148,8 +140,8 @@ func stop() -> void:
 		rep_counter.hide()
 		rep_counter.stop()
 
-	if set_counter:
-		set_counter.stop()
+	if phase_counter:
+		phase_counter.stop()
 
 func _on_flasher_flashed() -> void:
 	if _reps_remaining <= 0:

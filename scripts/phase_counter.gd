@@ -2,9 +2,12 @@
 class_name PhaseCounter extends HBoxContainer
 
 @export
-var workout: Workout:
+var workout_provider: WorkoutProvider:
     set(value):
-        workout = value
+        workout_provider = value
+
+        if not workout_provider.workout_changed.is_connected(_handle_workout_changed):
+            workout_provider.workout_changed.connect(_handle_workout_changed)
 
         _refresh()
 
@@ -35,10 +38,11 @@ var stepper_scene: PackedScene = preload("res://scenes/stepper.tscn")
 func _ready() -> void:
     _refresh()
 
+func _handle_workout_changed(_workout: Workout) -> void:
+    _refresh()
+
 func _get_step_count() -> int:
-    return workout.phases \
-        .map(func(p: WorkoutPhase): return p.sets) \
-        .reduce(func(accum: int, current: int): return accum + current)
+    return workout_provider.get_step_count() if workout_provider else 0
 
 func inc() -> void:
     current_step += 1
@@ -54,7 +58,7 @@ func _refresh() -> void:
     if not stepper_scene:
         return
 
-    if not workout:
+    if not workout_provider:
         return
 
     var steppers := get_children()
@@ -62,7 +66,9 @@ func _refresh() -> void:
     var current_starting_number = starting_number
     var step_offset := 0
 
-    for i in maxi(workout.phases.size(), steppers.size()):
+    var phase_count := workout_provider.get_phase_count()
+
+    for i in maxi(phase_count, steppers.size()):
         var stepper: Stepper
 
         if steppers.size() > i:
@@ -74,8 +80,8 @@ func _refresh() -> void:
             add_child(stepper)
             stepper.owner = self
 
-        if workout.phases.size() > i:
-            var phase := workout.phases[i]
+        if phase_count > i:
+            var phase := workout_provider.get_phase(i)
 
             stepper.starting_number = current_starting_number
             stepper.step_count = phase.sets
@@ -85,7 +91,7 @@ func _refresh() -> void:
             step_offset += phase.sets
             current_starting_number += phase.sets
 
-    if steppers.size() > workout.phases.size():
-        for i in range(workout.phases.size(), steppers.size()):
+    if steppers.size() > phase_count:
+        for i in range(phase_count, steppers.size()):
             print("Cleaning up child %d" % i)
             get_child(i).queue_free()

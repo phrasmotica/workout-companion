@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Workout" load_steps=5 format=3 uid="uid://cb5888y0g8sv7"]
+
+[ext_resource type="Script" uid="uid://caw4fqn70yms5" path="res://scripts/workout_phase.gd" id="1_majqx"]
+[ext_resource type="Script" uid="uid://x4gkwisjojn1" path="res://scripts/workout.gd" id="2_004v0"]
+
+[sub_resource type="Resource" id="Resource_ceqke"]
+script = ExtResource("1_majqx")
+sets = 3
+reps = 3
+rep_duration_seconds = 1.0
+pause_duration_seconds = 3.0
+metadata/_custom_type_script = "uid://caw4fqn70yms5"
+
+[sub_resource type="Resource" id="Resource_s6ce1"]
+script = ExtResource("1_majqx")
+sets = 2
+reps = 3
+rep_duration_seconds = 1.0
+pause_duration_seconds = 3.0
+metadata/_custom_type_script = "uid://caw4fqn70yms5"
+
+[resource]
+script = ExtResource("2_004v0")
+phases = Array[ExtResource("1_majqx")]([SubResource("Resource_ceqke"), SubResource("Resource_s6ce1")])
+metadata/_custom_type_script = "uid://x4gkwisjojn1"

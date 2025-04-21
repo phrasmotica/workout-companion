@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Workout" load_steps=6 format=3 uid="uid://id0d6a0oidty"]
+
+[ext_resource type="Script" uid="uid://caw4fqn70yms5" path="res://scripts/workout_phase.gd" id="1_m0ac5"]
+[ext_resource type="Script" uid="uid://x4gkwisjojn1" path="res://scripts/workout.gd" id="2_cf7pe"]
+
+[sub_resource type="Resource" id="Resource_ltcdg"]
+script = ExtResource("1_m0ac5")
+sets = 4
+reps = 20
+rep_duration_seconds = 1.0
+pause_duration_seconds = 60.0
+metadata/_custom_type_script = "uid://caw4fqn70yms5"
+
+[sub_resource type="Resource" id="Resource_m0ac5"]
+script = ExtResource("1_m0ac5")
+sets = 4
+reps = 20
+rep_duration_seconds = 1.0
+pause_duration_seconds = 60.0
+metadata/_custom_type_script = "uid://caw4fqn70yms5"
+
+[sub_resource type="Resource" id="Resource_cf7pe"]
+script = ExtResource("1_m0ac5")
+sets = 3
+reps = 10
+rep_duration_seconds = 3.0
+pause_duration_seconds = 60.0
+metadata/_custom_type_script = "uid://caw4fqn70yms5"
+
+[resource]
+script = ExtResource("2_cf7pe")
+phases = Array[ExtResource("1_m0ac5")]([SubResource("Resource_ltcdg"), SubResource("Resource_m0ac5"), SubResource("Resource_cf7pe")])
+metadata/_custom_type_script = "uid://x4gkwisjojn1"

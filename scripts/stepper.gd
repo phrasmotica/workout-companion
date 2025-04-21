@@ -16,9 +16,16 @@ var starting_number := 1:
         _refresh()
 
 @export
-var highlighted_step := -1:
+var current_step := -1:
     set(value):
-        highlighted_step = clampi(value, -1, step_count)
+        current_step = clampi(value, -1, step_count)
+
+        _refresh()
+
+@export
+var completed_step := -1:
+    set(value):
+        completed_step = clampi(value, -1, current_step)
 
         _refresh()
 
@@ -29,10 +36,14 @@ func _ready() -> void:
     _refresh()
 
 func inc() -> void:
-    highlighted_step += 1
+    current_step += 1
+
+func complete() -> void:
+    completed_step += 1
 
 func stop() -> void:
-    highlighted_step = 0
+    current_step = -1
+    completed_step = -1
 
 func _refresh() -> void:
     if not step_scene:
@@ -62,10 +73,13 @@ func _refresh() -> void:
             get_child(i).queue_free()
 
 func _compute_step_look(index: int) -> StepperStep.Look:
-    if index < highlighted_step:
+    if index < current_step:
         return StepperStep.Look.COMPLETED
 
-    if index == highlighted_step:
-        return StepperStep.Look.CURRENT
+    if index == current_step:
+        if index > completed_step:
+            return StepperStep.Look.CURRENT
+
+        return StepperStep.Look.COMPLETED
 
     return StepperStep.Look.FUTURE

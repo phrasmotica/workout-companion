@@ -130,6 +130,9 @@ func pause() -> void:
 		pause_countdown.show()
 		pause_countdown.start_stop()
 
+	if set_counter:
+		set_counter.complete()
+
 func stop() -> void:
 	if flasher:
 		flasher.hide()

@@ -8,6 +8,12 @@ var workout: Workout:
 
         _refresh()
 
+@export
+var starting_number := 1:
+    set(value):
+        starting_number = maxi(value, 0)
+
+        _refresh()
 @onready
 var stepper_scene: PackedScene = preload("res://scenes/stepper.tscn")
 
@@ -20,7 +26,7 @@ func _refresh() -> void:
 
     var steppers := get_children()
 
-    var starting_number = 1
+    var current_starting_number = starting_number
 
     for i in maxi(workout.phases.size(), steppers.size()):
         var stepper: Stepper
@@ -37,10 +43,10 @@ func _refresh() -> void:
         if workout.phases.size() > i:
             var phase := workout.phases[i]
 
-            stepper.starting_number = starting_number
+            stepper.starting_number = current_starting_number
             stepper.step_count = phase.sets
 
-            starting_number += phase.sets
+            current_starting_number += phase.sets
 
     if steppers.size() > workout.phases.size():
         for i in range(workout.phases.size(), steppers.size()):

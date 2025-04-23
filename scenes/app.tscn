@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dtajkb5vd5nal" path="res://scenes/flasher.tscn" id="1_jv4sb"]
 [ext_resource type="PackedScene" uid="uid://doppi5ifrq76e" path="res://scenes/workout_provider.tscn" id="3_6qkjt"]
 [ext_resource type="PackedScene" uid="uid://jw8x56hddkq3" path="res://scenes/countdown.tscn" id="3_uvl1u"]
-[ext_resource type="Resource" uid="uid://cns2711n2wt83" path="res://data/workout_5x4_4_3_fast.tres" id="3_v5dbw"]
+[ext_resource type="Resource" uid="uid://id0d6a0oidty" path="res://data/workout_20x4_4_3.tres" id="3_v5dbw"]
 [ext_resource type="PackedScene" uid="uid://b0h80wacfkk0t" path="res://scenes/phase_counter.tscn" id="4_jv7dx"]
 [ext_resource type="PackedScene" uid="uid://c3ny8dq1xas7h" path="res://scenes/status_message.tscn" id="4_k6d74"]
 [ext_resource type="PackedScene" uid="uid://cpcr2u4jlkqua" path="res://scenes/rep_counter.tscn" id="5_ljqyw"]
@@ -41,7 +41,7 @@ layout_mode = 2
 [node name="RepCounter" parent="MarginContainer/VBoxContainer" instance=ExtResource("5_ljqyw")]
 visible = false
 layout_mode = 2
-max_count = 5
+count = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -58,15 +58,14 @@ duration_seconds = 10
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-max_value = 2.0
+max_value = 60.0
 value = 0.0
-duration_seconds = 2
+duration_seconds = 60
 
 [node name="Flasher" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("1_jv4sb")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-wait_time_seconds = 0.5
 
 [connection signal="pressed_start" from="KeyListener" to="." method="_on_key_listener_pressed_start"]
 [connection signal="cancelled" from="MarginContainer/VBoxContainer/MarginContainer/Countdown" to="." method="_on_countdown_cancelled"]

@@ -180,8 +180,14 @@ func _on_flasher_flashed() -> void:
 
 				_sets_remaining = next_phase.sets
 
+				if rep_counter:
+					rep_counter.max_count = next_phase.reps
+
 				if flasher:
 					flasher.wait_time_seconds = next_phase.rep_duration_seconds
+
+				if pause_countdown:
+					pause_countdown.duration_seconds = int(next_phase.pause_duration_seconds)
 
 				pause()
 		else:

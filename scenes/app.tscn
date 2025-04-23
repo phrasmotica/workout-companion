@@ -50,7 +50,9 @@ size_flags_vertical = 3
 [node name="Countdown" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_uvl1u")]
 unique_name_in_owner = true
 layout_mode = 2
+max_value = 10.0
 value = 0.0
+duration_seconds = 10
 
 [node name="PauseCountdown" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_uvl1u")]
 unique_name_in_owner = true

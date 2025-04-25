@@ -5,6 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_ltcdg"]
 script = ExtResource("1_bwjbi")
+phase_name = ""
 sets = 11
 reps = 20
 rep_duration_seconds = 1.0

@@ -5,6 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_ltcdg"]
 script = ExtResource("1_1wp36")
+phase_name = ""
 sets = 4
 reps = 5
 rep_duration_seconds = 0.5
@@ -13,6 +14,7 @@ metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
 [sub_resource type="Resource" id="Resource_m0ac5"]
 script = ExtResource("1_1wp36")
+phase_name = ""
 sets = 4
 reps = 5
 rep_duration_seconds = 1.0
@@ -21,6 +23,7 @@ metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
 [sub_resource type="Resource" id="Resource_cf7pe"]
 script = ExtResource("1_1wp36")
+phase_name = ""
 sets = 3
 reps = 5
 rep_duration_seconds = 0.25

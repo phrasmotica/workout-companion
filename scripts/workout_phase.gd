@@ -2,6 +2,13 @@
 class_name WorkoutPhase extends Resource
 
 @export
+var phase_name := "":
+    set(value):
+        phase_name = value
+
+        emit_changed()
+
+@export
 var sets: int = 1:
     set(value):
         sets = value

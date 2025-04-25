@@ -41,7 +41,6 @@ layout_mode = 2
 [node name="RepCounter" parent="MarginContainer/VBoxContainer" instance=ExtResource("5_ljqyw")]
 visible = false
 layout_mode = 2
-count = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

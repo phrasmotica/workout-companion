@@ -4,7 +4,7 @@ class_name RepCounter extends VBoxContainer
 @export
 var count := 0:
     set(value):
-        count = clampi(value, 1, max_count)
+        count = clampi(value, 0, max_count)
 
         _refresh()
 

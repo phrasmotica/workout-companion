@@ -5,12 +5,11 @@
 [node name="RepCounter" type="VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 script = ExtResource("1_oj8hc")
-count = 1
 max_count = 20
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "Rep 1 of 20"
+text = "Rep 0 of 20"
 horizontal_alignment = 1

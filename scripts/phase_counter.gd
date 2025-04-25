@@ -83,6 +83,7 @@ func _refresh() -> void:
         if phase_count > i:
             var phase := workout_provider.get_phase(i)
 
+            stepper.footer_text = phase.phase_name
             stepper.starting_number = current_starting_number
             stepper.step_count = phase.sets
             stepper.current_step = current_step - step_offset

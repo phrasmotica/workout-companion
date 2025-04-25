@@ -1,31 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0h80wacfkk0t"]
+[gd_scene load_steps=3 format=3 uid="uid://b0h80wacfkk0t"]
 
 [ext_resource type="PackedScene" uid="uid://ctqbv83gyj2ql" path="res://scenes/stepper.tscn" id="1_5nvy7"]
 [ext_resource type="Script" uid="uid://b8quae1gvala1" path="res://scripts/phase_counter.gd" id="1_m5wjt"]
-[ext_resource type="Resource" uid="uid://id0d6a0oidty" path="res://data/workout_20x4_4_3.tres" id="2_kym4g"]
-[ext_resource type="Theme" uid="uid://pxiigjg7x2e4" path="res://ui_theme.tres" id="4_1vg60"]
-[ext_resource type="Script" uid="uid://d1x5d0boaio4m" path="res://scripts/stepper.gd" id="5_cryh7"]
 
 [node name="PhaseCounter" type="HBoxContainer"]
 theme_override_constants/separation = 50
 alignment = 1
 script = ExtResource("1_m5wjt")
-workout = ExtResource("2_kym4g")
 
 [node name="Stepper1" parent="." instance=ExtResource("1_5nvy7")]
 layout_mode = 2
+footer_text = "Shoulder Press x20"
 
-[node name="Stepper2" type="HBoxContainer" parent="." instance=ExtResource("1_5nvy7")]
+[node name="Stepper2" parent="." instance=ExtResource("1_5nvy7")]
 layout_mode = 2
-theme = ExtResource("4_1vg60")
-theme_override_constants/separation = 0
-script = ExtResource("5_cryh7")
-step_count = 4
-starting_number = 5
+footer_text = "Bicep Curl x20"
 
-[node name="Stepper3" type="HBoxContainer" parent="." instance=ExtResource("1_5nvy7")]
+[node name="Stepper3" parent="." instance=ExtResource("1_5nvy7")]
 layout_mode = 2
-theme = ExtResource("4_1vg60")
-theme_override_constants/separation = 0
-script = ExtResource("5_cryh7")
-starting_number = 9
+footer_text = "Lateral Raise x10"
+step_count = 3

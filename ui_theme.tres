@@ -1,5 +1,7 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://pxiigjg7x2e4"]
 
+[ext_resource type="SystemFont" uid="uid://dn35gdu8qvgys" path="res://ui_font.tres" id="1_touxu"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmjyp"]
 bg_color = Color(0, 0.705882, 0, 1)
 border_width_left = 2
@@ -44,9 +46,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="SystemFont" id="SystemFont_dmjyp"]
-font_names = PackedStringArray("Osaka")
-
 [resource]
 CompletedStepperPanelContainer/base_type = &"PanelContainer"
 CompletedStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_dmjyp")
@@ -54,8 +53,11 @@ FutureStepperPanelContainer/base_type = &"PanelContainer"
 FutureStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_touxu")
 HighlightedStepperPanelContainer/base_type = &"PanelContainer"
 HighlightedStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_2pn01")
+StepperFooterLabel/base_type = &"Label"
+StepperFooterLabel/font_sizes/font_size = 22
+StepperFooterLabel/fonts/font = ExtResource("1_touxu")
 StepperPanelContainer/base_type = &"PanelContainer"
 StepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_potcg")
 StepperStepLabel/base_type = &"Label"
 StepperStepLabel/font_sizes/font_size = 32
-StepperStepLabel/fonts/font = SubResource("SystemFont_dmjyp")
+StepperStepLabel/fonts/font = ExtResource("1_touxu")

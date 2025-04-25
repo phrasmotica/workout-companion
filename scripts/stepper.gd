@@ -1,5 +1,12 @@
 @tool
-class_name Stepper extends HBoxContainer
+class_name Stepper extends VBoxContainer
+
+@export
+var footer_text := "":
+    set(value):
+        footer_text = value
+
+        _refresh()
 
 @export
 var step_count := 3:
@@ -32,6 +39,12 @@ var completed_step := -1:
 @onready
 var step_scene: PackedScene = load("res://scenes/stepper_step.tscn")
 
+@onready
+var steps_parent: Control = %StepsContainer
+
+@onready
+var footer: Label = %Footer
+
 func _ready() -> void:
     _refresh()
 
@@ -46,10 +59,13 @@ func stop() -> void:
     completed_step = -1
 
 func _refresh() -> void:
+    if footer:
+        footer.text = footer_text if len(footer_text) > 0 else "<footer>"
+
     if not step_scene:
         return
 
-    var steps := get_children()
+    var steps := steps_parent.get_children()
 
     for i in maxi(step_count, steps.size()):
         var step: StepperStep
@@ -60,7 +76,7 @@ func _refresh() -> void:
             step = step_scene.instantiate()
             step.name = "StepperStep%d" % (i + 1)
 
-            add_child(step)
+            steps_parent.add_child(step)
             step.owner = self
 
         step.number = starting_number + i
@@ -70,7 +86,7 @@ func _refresh() -> void:
     if steps.size() > step_count:
         for i in range(step_count, steps.size()):
             print("Cleaning up child %d" % i)
-            get_child(i).queue_free()
+            steps_parent.get_child(i).queue_free()
 
 func _compute_step_look(index: int) -> StepperStep.Look:
     if index < current_step:

@@ -4,24 +4,47 @@
 [ext_resource type="Script" uid="uid://d1x5d0boaio4m" path="res://scripts/stepper.gd" id="2_k1r7q"]
 [ext_resource type="PackedScene" uid="uid://hu3lks1j7q1n" path="res://scenes/stepper_step.tscn" id="2_xv8sx"]
 
-[node name="Stepper" type="HBoxContainer"]
+[node name="Stepper" type="VBoxContainer"]
+offset_right = 350.0
+offset_bottom = 95.0
 theme = ExtResource("1_y5723")
 theme_override_constants/separation = 0
 script = ExtResource("2_k1r7q")
 step_count = 4
 
-[node name="StepperStep1" parent="." instance=ExtResource("2_xv8sx")]
+[node name="StepsContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_y5723")
+theme_override_constants/separation = 0
+
+[node name="StepperStep1" parent="StepsContainer" instance=ExtResource("2_xv8sx")]
 layout_mode = 2
 show_leading_line = false
 
-[node name="StepperStep2" parent="." instance=ExtResource("2_xv8sx")]
+[node name="StepperStep2" parent="StepsContainer" instance=ExtResource("2_xv8sx")]
 layout_mode = 2
 number = 2
 
-[node name="StepperStep3" parent="." instance=ExtResource("2_xv8sx")]
+[node name="StepperStep3" parent="StepsContainer" instance=ExtResource("2_xv8sx")]
 layout_mode = 2
 number = 3
 
-[node name="StepperStep4" parent="." instance=ExtResource("2_xv8sx")]
+[node name="StepperStep4" parent="StepsContainer" instance=ExtResource("2_xv8sx")]
 layout_mode = 2
 number = 4
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Footer" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"StepperFooterLabel"
+text = "<footer>"
+horizontal_alignment = 1

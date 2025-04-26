@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxlcd48aoqnro"]
+
+[ext_resource type="Script" uid="uid://bq0a8so0twice" path="res://scripts/ui_updater.gd" id="1_goiie"]
+
+[node name="UIUpdater" type="Node"]
+script = ExtResource("1_goiie")

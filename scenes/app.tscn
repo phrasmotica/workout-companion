@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://v6tj6nloub77"]
+[gd_scene load_steps=11 format=3 uid="uid://v6tj6nloub77"]
 
 [ext_resource type="Script" uid="uid://dphjta0fnof0s" path="res://scripts/app.gd" id="1_fee65"]
 [ext_resource type="PackedScene" uid="uid://dq00nnlosn23m" path="res://scenes/key_listener.tscn" id="1_hu2qg"]
@@ -9,18 +9,25 @@
 [ext_resource type="PackedScene" uid="uid://b0h80wacfkk0t" path="res://scenes/phase_counter.tscn" id="4_jv7dx"]
 [ext_resource type="PackedScene" uid="uid://c3ny8dq1xas7h" path="res://scenes/status_message.tscn" id="4_k6d74"]
 [ext_resource type="PackedScene" uid="uid://cpcr2u4jlkqua" path="res://scenes/rep_counter.tscn" id="5_ljqyw"]
+[ext_resource type="PackedScene" uid="uid://bxlcd48aoqnro" path="res://scenes/ui_updater.tscn" id="6_ltcdg"]
 
-[node name="App" type="Node2D" node_paths=PackedStringArray("workout_provider", "status_message", "phase_counter", "rep_counter")]
+[node name="App" type="Node2D" node_paths=PackedStringArray("workout_provider", "ui_updater")]
 script = ExtResource("1_fee65")
 workout_provider = NodePath("WorkoutProvider")
-status_message = NodePath("MarginContainer/VBoxContainer/StatusMessage")
-phase_counter = NodePath("MarginContainer/VBoxContainer/PhaseCounter")
-rep_counter = NodePath("MarginContainer/VBoxContainer/RepCounter")
+ui_updater = NodePath("UIUpdater")
 
 [node name="WorkoutProvider" parent="." instance=ExtResource("3_6qkjt")]
 workout = ExtResource("3_v5dbw")
 
 [node name="KeyListener" parent="." instance=ExtResource("1_hu2qg")]
+
+[node name="UIUpdater" parent="." node_paths=PackedStringArray("phase_counter", "status_message", "rep_counter", "countdown", "pause_countdown", "flasher") instance=ExtResource("6_ltcdg")]
+phase_counter = NodePath("../MarginContainer/VBoxContainer/PhaseCounter")
+status_message = NodePath("../MarginContainer/VBoxContainer/StatusMessage")
+rep_counter = NodePath("../MarginContainer/VBoxContainer/RepCounter")
+countdown = NodePath("../MarginContainer/VBoxContainer/MarginContainer/Countdown")
+pause_countdown = NodePath("../MarginContainer/VBoxContainer/MarginContainer/PauseCountdown")
+flasher = NodePath("../MarginContainer/VBoxContainer/MarginContainer/Flasher")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 1152.0

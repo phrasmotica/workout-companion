@@ -2,6 +2,11 @@
 class_name UIUpdater extends Node
 
 @export
+var state_machine: StateMachine
+
+@export_group("UI Controls")
+
+@export
 var phase_counter: PhaseCounter
 
 @export
@@ -18,6 +23,13 @@ var pause_countdown: Countdown
 
 @export
 var flasher: Flasher
+
+func _ready() -> void:
+	if state_machine:
+		state_machine.entered_countdown.connect(to_countdown)
+		state_machine.entered_in_progress.connect(to_in_progress)
+		state_machine.entered_pausing.connect(to_pausing)
+		state_machine.entered_ready.connect(to_ready)
 
 func inject_phase(phase: WorkoutPhase) -> void:
 	if rep_counter:

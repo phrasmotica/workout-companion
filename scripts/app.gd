@@ -15,17 +15,19 @@ var workout_provider: WorkoutProvider:
 		_refresh()
 
 @export
+var state_machine: StateMachine
+
+@export
 var ui_updater: UIUpdater
 
-# HIGH: move all of the state-machine transitions into a dedicated script that
-# emits signals when the transitions happen. Then react to those signals in
-# this script.
-
+# HIGH: do all the phase/set/reps counting in a separate script. Have the UI
+# updater react to signals from that script
 var _current_phase := -1
 var _sets_remaining := 0
 var _reps_remaining := 0
 
 func _ready() -> void:
+	assert(state_machine)
 	assert(ui_updater)
 
 func _handle_workout_changed(_workout: Workout) -> void:
@@ -51,25 +53,25 @@ func to_countdown() -> void:
 	var phase := workout_provider.get_phase(_current_phase)
 	_sets_remaining = phase.sets
 
-	ui_updater.to_countdown()
+	state_machine.to_countdown()
 
 func to_in_progress() -> void:
 	var phase := workout_provider.get_phase(_current_phase)
 	_reps_remaining = phase.reps
 
-	ui_updater.to_in_progress()
+	state_machine.to_in_progress()
 
 func to_pausing() -> void:
 	var phase := workout_provider.get_phase(_current_phase)
 
 	print("Pausing for %d second(s)" % phase.pause_duration_seconds)
 
-	ui_updater.to_pausing(phase.pause_duration_seconds)
+	state_machine.to_pausing(phase.pause_duration_seconds)
 
 func to_ready() -> void:
 	print("Stopping")
 
-	ui_updater.to_ready()
+	state_machine.to_ready()
 
 func _on_flasher_flashed() -> void:
 	if _reps_remaining <= 0:

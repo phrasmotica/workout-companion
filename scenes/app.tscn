@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://v6tj6nloub77"]
+[gd_scene load_steps=13 format=3 uid="uid://v6tj6nloub77"]
 
 [ext_resource type="Script" uid="uid://dphjta0fnof0s" path="res://scripts/app.gd" id="1_fee65"]
 [ext_resource type="PackedScene" uid="uid://dq00nnlosn23m" path="res://scenes/key_listener.tscn" id="1_hu2qg"]
 [ext_resource type="PackedScene" uid="uid://dtajkb5vd5nal" path="res://scenes/flasher.tscn" id="1_jv4sb"]
 [ext_resource type="PackedScene" uid="uid://ctb4rt58sdbm2" path="res://scenes/state_machine.tscn" id="2_v5dbw"]
 [ext_resource type="PackedScene" uid="uid://doppi5ifrq76e" path="res://scenes/workout_provider.tscn" id="3_6qkjt"]
+[ext_resource type="PackedScene" uid="uid://bqntwejglqi21" path="res://scenes/workout_state.tscn" id="3_ceqke"]
 [ext_resource type="PackedScene" uid="uid://jw8x56hddkq3" path="res://scenes/countdown.tscn" id="3_uvl1u"]
 [ext_resource type="PackedScene" uid="uid://b0h80wacfkk0t" path="res://scenes/phase_counter.tscn" id="4_jv7dx"]
 [ext_resource type="PackedScene" uid="uid://c3ny8dq1xas7h" path="res://scenes/status_message.tscn" id="4_k6d74"]
@@ -12,13 +13,17 @@
 [ext_resource type="PackedScene" uid="uid://cpcr2u4jlkqua" path="res://scenes/rep_counter.tscn" id="5_ljqyw"]
 [ext_resource type="PackedScene" uid="uid://bxlcd48aoqnro" path="res://scenes/ui_updater.tscn" id="6_ltcdg"]
 
-[node name="App" type="Node2D" node_paths=PackedStringArray("workout_provider", "state_machine", "ui_updater")]
+[node name="App" type="Node2D" node_paths=PackedStringArray("workout_provider", "state_machine", "workout_state", "ui_updater")]
 script = ExtResource("1_fee65")
 workout_provider = NodePath("WorkoutProvider")
 state_machine = NodePath("StateMachine")
+workout_state = NodePath("WorkoutState")
 ui_updater = NodePath("UIUpdater")
 
 [node name="StateMachine" parent="." instance=ExtResource("2_v5dbw")]
+
+[node name="WorkoutState" parent="." node_paths=PackedStringArray("workout_provider") instance=ExtResource("3_ceqke")]
+workout_provider = NodePath("../WorkoutProvider")
 
 [node name="WorkoutProvider" parent="." instance=ExtResource("3_6qkjt")]
 workout = ExtResource("4_ltcdg")

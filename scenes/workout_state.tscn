@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqntwejglqi21"]
+
+[ext_resource type="Script" uid="uid://bnktppbjk5hu0" path="res://scripts/workout_state.gd" id="1_wo53q"]
+
+[node name="WorkoutState" type="Node"]
+script = ExtResource("1_wo53q")

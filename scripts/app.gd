@@ -18,13 +18,10 @@ var workout_provider: WorkoutProvider:
 var state_machine: StateMachine
 
 @export
-var ui_updater: UIUpdater
+var workout_state: WorkoutState
 
-# HIGH: do all the phase/set/reps counting in a separate script. Have the UI
-# updater react to signals from that script
-var _current_phase := -1
-var _sets_remaining := 0
-var _reps_remaining := 0
+@export
+var ui_updater: UIUpdater
 
 func _ready() -> void:
 	assert(state_machine)
@@ -34,35 +31,29 @@ func _handle_workout_changed(_workout: Workout) -> void:
 	_refresh()
 
 func _refresh() -> void:
-	if not workout_provider:
+	if not workout_state:
 		return
 
-	_current_phase = -1
-	_sets_remaining = 0
-	_reps_remaining = 0
+	workout_state.reset_all()
 
-	var phase := workout_provider.get_phase(0)
+	var first_phase := workout_state.get_next_phase()
 
-	if phase and ui_updater:
+	if first_phase and ui_updater:
 		# UI updater might be null here
-		ui_updater.inject_phase(phase)
+		ui_updater.inject_phase(first_phase)
 
 func to_countdown() -> void:
-	_current_phase = 0
-
-	var phase := workout_provider.get_phase(_current_phase)
-	_sets_remaining = phase.sets
+	workout_state.to_first_phase()
 
 	state_machine.to_countdown()
 
 func to_in_progress() -> void:
-	var phase := workout_provider.get_phase(_current_phase)
-	_reps_remaining = phase.reps
+	workout_state.start_phase()
 
 	state_machine.to_in_progress()
 
 func to_pausing() -> void:
-	var phase := workout_provider.get_phase(_current_phase)
+	var phase := workout_state.get_phase()
 
 	print("Pausing for %d second(s)" % phase.pause_duration_seconds)
 
@@ -74,34 +65,24 @@ func to_ready() -> void:
 	state_machine.to_ready()
 
 func _on_flasher_flashed() -> void:
-	if _reps_remaining <= 0:
-		_sets_remaining -= 1
+	if workout_state.is_set_finished():
+		workout_state.to_next_set()
 
-		if _sets_remaining <= 0:
-			print("Finished last set of phase %d" % _current_phase)
+		if workout_state.is_phase_finished():
+			print("Finished last set of phase %d" % workout_state.current_phase)
 
-			_current_phase += 1
+			workout_state.to_next_phase()
 
-			if _current_phase >= workout_provider.get_phase_count():
+			if workout_state.is_finished():
 				to_ready()
 			else:
-				print("%d set(s) remaining" % _sets_remaining)
-
-				var next_phase := workout_provider.get_phase(_current_phase)
-
-				_sets_remaining = next_phase.sets
-
-				ui_updater.inject_phase(next_phase)
+				ui_updater.inject_phase(workout_state.get_phase())
 
 				to_pausing()
 		else:
-			print("%d set(s) remaining" % _sets_remaining)
-
 			to_pausing()
 	else:
-		_reps_remaining -= 1
-
-		print("%d reps remaining" % _reps_remaining)
+		workout_state.to_next_rep()
 
 		ui_updater.add_rep()
 

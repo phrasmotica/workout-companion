@@ -82,6 +82,7 @@ func _refresh() -> void:
         step.number = starting_number + i
         step.show_leading_line = i > 0
         step.look = _compute_step_look(i)
+        step.content = _compute_step_content(i)
 
     if steps.size() > step_count:
         for i in range(step_count, steps.size()):
@@ -99,3 +100,15 @@ func _compute_step_look(index: int) -> StepperStep.Look:
         return StepperStep.Look.COMPLETED
 
     return StepperStep.Look.FUTURE
+
+func _compute_step_content(index: int) -> StepperStep.Content:
+    if index < current_step:
+        return StepperStep.Content.TICK
+
+    if index == current_step:
+        if index > completed_step:
+            return StepperStep.Content.TEXT
+
+        return StepperStep.Content.TICK
+
+    return StepperStep.Content.TEXT

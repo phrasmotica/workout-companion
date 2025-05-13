@@ -3,6 +3,8 @@ class_name StepperStep extends HBoxContainer
 
 enum Look { FUTURE, CURRENT, COMPLETED }
 
+enum Content { NONE, TEXT, TICK }
+
 @export
 var number := 1:
     set(value):
@@ -21,6 +23,13 @@ var show_leading_line := false:
 var look := Look.FUTURE:
     set(value):
         look = value
+
+        _refresh()
+
+@export
+var content := Content.TEXT:
+    set(value):
+        content = value
 
         _refresh()
 
@@ -47,6 +56,9 @@ var step_background: PanelContainer = %PanelContainer
 @onready
 var label: Label = %Label
 
+@onready
+var tick_icon: Control = %TickIcon
+
 func _refresh() -> void:
     if leading_line:
         leading_line.visible = show_leading_line
@@ -56,7 +68,11 @@ func _refresh() -> void:
         step_background.theme_type_variation = _compute_panel_style()
 
     if label:
+        label.visible = content == Content.TEXT
         label.text = str(number)
+
+    if tick_icon:
+        tick_icon.visible = content == Content.TICK
 
 func _compute_line_colour() -> Color:
     if look == Look.COMPLETED:

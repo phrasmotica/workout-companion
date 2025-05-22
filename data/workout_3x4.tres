@@ -14,5 +14,6 @@ metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
 [resource]
 script = ExtResource("2_cd2m1")
+countdown_duration_seconds = 30.0
 phases = Array[ExtResource("1_rg5h4")]([SubResource("Resource_6wxpa")])
 metadata/_custom_type_script = "uid://x4gkwisjojn1"

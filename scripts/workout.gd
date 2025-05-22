@@ -1,6 +1,13 @@
 @tool
 class_name Workout extends Resource
 
+@export_range(0, 60)
+var countdown_duration_seconds: float = 30:
+    set(value):
+        countdown_duration_seconds = value
+
+        emit_changed()
+
 @export
 var phases: Array[WorkoutPhase] = []:
     set(value):

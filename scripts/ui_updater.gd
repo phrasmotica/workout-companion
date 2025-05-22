@@ -7,6 +7,9 @@ var state_machine: StateMachine
 @export_group("UI Controls")
 
 @export
+var title_label: Label
+
+@export
 var phase_counter: PhaseCounter
 
 @export
@@ -30,6 +33,10 @@ func _ready() -> void:
 		state_machine.entered_in_progress.connect(to_in_progress)
 		state_machine.entered_pausing.connect(to_pausing)
 		state_machine.entered_ready.connect(to_ready)
+
+func inject_title(title: String) -> void:
+	if title_label:
+		title_label.text = title
 
 func inject_countdown(duration_seconds: float) -> void:
 	if countdown:

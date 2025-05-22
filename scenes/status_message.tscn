@@ -8,7 +8,7 @@ script = ExtResource("1_0pn5e")
 [node name="PressToStartLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Press SPACE to start..."
 horizontal_alignment = 1
 
@@ -16,7 +16,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Get ready..."
 horizontal_alignment = 1
 
@@ -24,6 +24,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Pausing..."
 horizontal_alignment = 1

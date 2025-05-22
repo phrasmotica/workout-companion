@@ -37,6 +37,7 @@ func _refresh() -> void:
 	workout_state.reset_all()
 
 	if ui_updater:
+		ui_updater.inject_title(workout_state.get_title())
 		ui_updater.inject_countdown(workout_state.get_countdown_time())
 
 		var first_phase := workout_state.get_next_phase()

@@ -1,6 +1,13 @@
 @tool
 class_name Workout extends Resource
 
+@export
+var title := "":
+    set(value):
+        title = value
+
+        emit_changed()
+
 @export_range(0, 60)
 var countdown_duration_seconds: float = 30:
     set(value):

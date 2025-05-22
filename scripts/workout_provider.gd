@@ -16,6 +16,12 @@ signal workout_changed(workout: Workout)
 func _emit_changed() -> void:
 	workout_changed.emit(workout)
 
+func get_title() -> String:
+	if not workout:
+		return "<unnamed workout>"
+
+	return workout.title
+
 func get_countdown_time() -> float:
 	return workout.countdown_duration_seconds if workout else 0.0
 

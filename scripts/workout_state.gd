@@ -13,6 +13,9 @@ var current_phase := -1:
 var _sets_remaining := 0
 var _reps_remaining := 0
 
+func get_countdown_time() -> float:
+	return workout_provider.get_countdown_time()
+
 func get_phase() -> WorkoutPhase:
 	if not workout_provider:
 		return null

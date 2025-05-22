@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://jw8x56hddkq3" path="res://scenes/countdown.tscn" id="3_uvl1u"]
 [ext_resource type="PackedScene" uid="uid://b0h80wacfkk0t" path="res://scenes/phase_counter.tscn" id="4_jv7dx"]
 [ext_resource type="PackedScene" uid="uid://c3ny8dq1xas7h" path="res://scenes/status_message.tscn" id="4_k6d74"]
-[ext_resource type="Resource" uid="uid://n6wcok7l7e5" path="res://data/workout_fast_test.tres" id="4_ltcdg"]
+[ext_resource type="Resource" uid="uid://id0d6a0oidty" path="res://data/workout_20x4_4_3.tres" id="5_ceqke"]
 [ext_resource type="PackedScene" uid="uid://cpcr2u4jlkqua" path="res://scenes/rep_counter.tscn" id="5_ljqyw"]
 [ext_resource type="PackedScene" uid="uid://bxlcd48aoqnro" path="res://scenes/ui_updater.tscn" id="6_ltcdg"]
 
@@ -26,7 +26,7 @@ ui_updater = NodePath("UIUpdater")
 workout_provider = NodePath("../WorkoutProvider")
 
 [node name="WorkoutProvider" parent="." instance=ExtResource("3_6qkjt")]
-workout = ExtResource("4_ltcdg")
+workout = ExtResource("5_ceqke")
 
 [node name="KeyListener" parent="." instance=ExtResource("1_hu2qg")]
 
@@ -58,7 +58,6 @@ layout_mode = 2
 [node name="RepCounter" parent="MarginContainer/VBoxContainer" instance=ExtResource("5_ljqyw")]
 visible = false
 layout_mode = 2
-max_count = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -67,23 +66,22 @@ size_flags_vertical = 3
 [node name="Countdown" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_uvl1u")]
 unique_name_in_owner = true
 layout_mode = 2
-max_value = 2.0
+max_value = 20.0
 value = 0.0
-duration_seconds = 2
+duration_seconds = 20
 
 [node name="PauseCountdown" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_uvl1u")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-max_value = 2.0
+max_value = 60.0
 value = 0.0
-duration_seconds = 2
+duration_seconds = 60
 
 [node name="Flasher" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("1_jv4sb")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-wait_time_seconds = 0.25
 
 [connection signal="pressed_start" from="KeyListener" to="." method="_on_key_listener_pressed_start"]
 [connection signal="cancelled" from="MarginContainer/VBoxContainer/MarginContainer/Countdown" to="." method="_on_countdown_cancelled"]

@@ -31,6 +31,10 @@ func _ready() -> void:
 		state_machine.entered_pausing.connect(to_pausing)
 		state_machine.entered_ready.connect(to_ready)
 
+func inject_countdown(duration_seconds: float) -> void:
+	if countdown:
+		countdown.duration_seconds = int(duration_seconds)
+
 func inject_phase(phase: WorkoutPhase) -> void:
 	if rep_counter:
 		rep_counter.max_count = phase.reps

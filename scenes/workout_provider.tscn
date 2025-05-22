@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://doppi5ifrq76e"]
 
 [ext_resource type="Script" uid="uid://dkybtwsdnwa54" path="res://scripts/workout_provider.gd" id="1_6r2m3"]
-[ext_resource type="Resource" uid="uid://cb5888y0g8sv7" path="res://data/workout_3x3_2x3.tres" id="2_7jjds"]
+[ext_resource type="Resource" uid="uid://cb5888y0g8sv7" path="res://data/workout_2.tres" id="2_7jjds"]
 
 [node name="WorkoutProvider" type="Node"]
 script = ExtResource("1_6r2m3")

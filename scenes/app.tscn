@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://jw8x56hddkq3" path="res://scenes/countdown.tscn" id="3_uvl1u"]
 [ext_resource type="PackedScene" uid="uid://b0h80wacfkk0t" path="res://scenes/phase_counter.tscn" id="4_jv7dx"]
 [ext_resource type="PackedScene" uid="uid://c3ny8dq1xas7h" path="res://scenes/status_message.tscn" id="4_k6d74"]
-[ext_resource type="Resource" uid="uid://id0d6a0oidty" path="res://data/workout_20x4_4_3.tres" id="5_ceqke"]
+[ext_resource type="Resource" uid="uid://id0d6a0oidty" path="res://data/workout_daily_routine.tres" id="5_ceqke"]
 [ext_resource type="PackedScene" uid="uid://cpcr2u4jlkqua" path="res://scenes/rep_counter.tscn" id="5_ljqyw"]
 [ext_resource type="PackedScene" uid="uid://bxlcd48aoqnro" path="res://scenes/ui_updater.tscn" id="6_ltcdg"]
 

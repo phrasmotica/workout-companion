@@ -9,6 +9,7 @@ phase_name = ""
 sets = 11
 reps = 20
 rep_duration_seconds = 1.0
+rep_curve = 0
 pause_duration_seconds = 60.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 

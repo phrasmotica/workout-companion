@@ -48,6 +48,7 @@ func inject_phase(phase: WorkoutPhase) -> void:
 
 	if flasher:
 		flasher.wait_time_seconds = phase.rep_duration_seconds
+		flasher.progress_curve = phase.rep_curve
 
 	if pause_countdown:
 		pause_countdown.duration_seconds = int(phase.pause_duration_seconds)

@@ -9,15 +9,17 @@ phase_name = "Phase 1 (0.25s)"
 sets = 2
 reps = 5
 rep_duration_seconds = 0.25
+rep_curve = 0
 pause_duration_seconds = 2.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
 [sub_resource type="Resource" id="Resource_m0ac5"]
 script = ExtResource("1_jr0ah")
-phase_name = "Phase 2 (0.25s)"
+phase_name = "Phase 2 (1.0s)"
 sets = 2
 reps = 3
-rep_duration_seconds = 0.25
+rep_duration_seconds = 1.0
+rep_curve = 1
 pause_duration_seconds = 2.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
@@ -27,6 +29,7 @@ phase_name = "Phase 3 (0.25s)"
 sets = 3
 reps = 4
 rep_duration_seconds = 0.25
+rep_curve = 0
 pause_duration_seconds = 2.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 

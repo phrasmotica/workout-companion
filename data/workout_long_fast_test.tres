@@ -9,6 +9,7 @@ phase_name = "Phase 1 (0.5s)"
 sets = 4
 reps = 5
 rep_duration_seconds = 0.5
+rep_curve = 0
 pause_duration_seconds = 2.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
@@ -18,6 +19,7 @@ phase_name = "Phase 2 (1.0s)"
 sets = 4
 reps = 5
 rep_duration_seconds = 1.0
+rep_curve = 1
 pause_duration_seconds = 2.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
@@ -27,6 +29,7 @@ phase_name = "Phase 3 (0.25s)"
 sets = 3
 reps = 5
 rep_duration_seconds = 0.25
+rep_curve = 0
 pause_duration_seconds = 2.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 

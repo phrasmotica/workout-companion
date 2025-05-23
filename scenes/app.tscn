@@ -92,6 +92,8 @@ duration_seconds = 60
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+color = Color(0, 0.784314, 0.196078, 0)
+progress_curve = 1
 
 [connection signal="pressed_start" from="KeyListener" to="." method="_on_key_listener_pressed_start"]
 [connection signal="cancelled" from="MarginContainer/VBoxContainer/MarginContainer/Countdown" to="." method="_on_countdown_cancelled"]

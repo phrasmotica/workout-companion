@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://v6tj6nloub77"]
+[gd_scene load_steps=14 format=3 uid="uid://v6tj6nloub77"]
 
 [ext_resource type="Script" uid="uid://dphjta0fnof0s" path="res://scripts/app.gd" id="1_fee65"]
 [ext_resource type="PackedScene" uid="uid://dq00nnlosn23m" path="res://scenes/key_listener.tscn" id="1_hu2qg"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://id0d6a0oidty" path="res://data/workout_daily_routine.tres" id="5_ceqke"]
 [ext_resource type="PackedScene" uid="uid://cpcr2u4jlkqua" path="res://scenes/rep_counter.tscn" id="5_ljqyw"]
 [ext_resource type="PackedScene" uid="uid://bxlcd48aoqnro" path="res://scenes/ui_updater.tscn" id="6_ltcdg"]
+[ext_resource type="Theme" uid="uid://pxiigjg7x2e4" path="res://ui_theme.tres" id="8_s6ce1"]
 
 [node name="App" type="Node2D" node_paths=PackedStringArray("workout_provider", "state_machine", "workout_state", "ui_updater")]
 script = ExtResource("1_fee65")
@@ -43,6 +44,7 @@ flasher = NodePath("../MarginContainer/VBoxContainer/MarginContainer/Flasher")
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
+theme = ExtResource("8_s6ce1")
 theme_override_constants/margin_top = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]

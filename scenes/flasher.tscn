@@ -5,9 +5,9 @@
 [ext_resource type="Curve" uid="uid://bu2qi3hki7opo" path="res://data/curves/c_linear_in_out.tres" id="3_cfx5s"]
 
 [node name="Flasher" type="ColorRect"]
-custom_minimum_size = Vector2(400, 400)
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(0, 400)
+offset_right = 400.0
+offset_bottom = 400.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0, 0.784314, 0.196078, 1)
@@ -16,3 +16,5 @@ curves = Dictionary[int, Curve]({
 0: ExtResource("2_88jdk"),
 1: ExtResource("3_cfx5s")
 })
+
+[connection signal="resized" from="." to="." method="_on_resized"]

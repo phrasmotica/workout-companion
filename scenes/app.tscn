@@ -91,6 +91,7 @@ duration_seconds = 60
 [node name="Flasher" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("1_jv4sb")]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 color = Color(0, 0.784314, 0.196078, 0)
 progress_curve = 1

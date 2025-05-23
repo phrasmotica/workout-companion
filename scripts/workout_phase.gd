@@ -36,6 +36,13 @@ var rep_curve := Flasher.ProgressCurve.LINEAR_OUT:
 
         emit_changed()
 
+@export
+var rep_curve_param := Flasher.ProgressParam.ALPHA:
+    set(value):
+        rep_curve_param = value
+
+        emit_changed()
+
 @export_range(0, 120)
 var pause_duration_seconds: float = 60:
     set(value):

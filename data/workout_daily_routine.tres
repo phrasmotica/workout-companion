@@ -10,6 +10,7 @@ sets = 4
 reps = 20
 rep_duration_seconds = 1.0
 rep_curve = 1
+rep_curve_param = 1
 pause_duration_seconds = 60.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
@@ -20,6 +21,7 @@ sets = 4
 reps = 20
 rep_duration_seconds = 1.0
 rep_curve = 1
+rep_curve_param = 1
 pause_duration_seconds = 60.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 
@@ -30,6 +32,7 @@ sets = 3
 reps = 10
 rep_duration_seconds = 2.5
 rep_curve = 1
+rep_curve_param = 1
 pause_duration_seconds = 60.0
 metadata/_custom_type_script = "uid://caw4fqn70yms5"
 

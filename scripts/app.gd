@@ -68,6 +68,9 @@ func to_ready() -> void:
 	state_machine.to_ready()
 
 func _on_flasher_flashed() -> void:
+	if Engine.is_editor_hint():
+		return
+
 	if workout_state.is_set_finished():
 		workout_state.to_next_set()
 

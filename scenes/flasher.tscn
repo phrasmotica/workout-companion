@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtajkb5vd5nal"]
+[gd_scene load_steps=4 format=3 uid="uid://dtajkb5vd5nal"]
 
 [ext_resource type="Script" uid="uid://dl80c211l56qv" path="res://scripts/flasher.gd" id="1_tu17n"]
+[ext_resource type="Curve" uid="uid://c7tqjcgda2jqt" path="res://data/curves/c_linear_out.tres" id="2_88jdk"]
+[ext_resource type="Curve" uid="uid://bu2qi3hki7opo" path="res://data/curves/c_linear_in_out.tres" id="3_cfx5s"]
 
 [node name="Flasher" type="ColorRect"]
 custom_minimum_size = Vector2(400, 400)
@@ -10,3 +12,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0, 0.784314, 0.196078, 1)
 script = ExtResource("1_tu17n")
+curves = Dictionary[int, Curve]({
+0: ExtResource("2_88jdk"),
+1: ExtResource("3_cfx5s")
+})

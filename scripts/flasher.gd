@@ -1,41 +1,47 @@
+@tool
 class_name Flasher extends ColorRect
 
 ## The time between flashes.
 @export_range(0.1, 5.0)
 var wait_time_seconds := 1.0
 
+@export
+var started := false:
+	set(value):
+		started = value
+
+		progress = 0.0
+
+		_refresh()
+
+@export_range(0.0, 1.0)
+var progress := 0.0:
+	set(value):
+		progress = value
+
+		_refresh()
+
 signal flashed
 
-var _started := false
-var _progress := 0.0
-
 func _process(delta: float) -> void:
-	if not _started:
+	if not started:
 		return
 
-	_progress += delta / wait_time_seconds
+	progress += delta / wait_time_seconds
 
-	if _progress >= 1:
-		_progress = 0
+	if progress >= 1.0:
+		progress = 0.0
 		flashed.emit()
 
-	update_alpha()
+func _refresh() -> void:
+	color.a = 1.0 - progress
 
-func start_stop():
-	if not _started:
-		_started = true
+func start_stop() -> void:
+	if not started:
+		started = true
 		flashed.emit()
 	else:
-		stop()
+		started = false
 
-func stop():
-	_started = false
-	_progress = 0
-
-	update_alpha()
-
-func update_alpha():
-	color.a = 1 - _progress
-
-func _on_flash_interval_slider_value_changed(value: float) -> void:
-	wait_time_seconds = value
+func stop() -> void:
+	started = false

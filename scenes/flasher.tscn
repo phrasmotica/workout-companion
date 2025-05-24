@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtajkb5vd5nal"]
+[gd_scene load_steps=5 format=3 uid="uid://dtajkb5vd5nal"]
 
 [ext_resource type="Script" uid="uid://dl80c211l56qv" path="res://scripts/flasher.gd" id="1_tu17n"]
 [ext_resource type="Curve" uid="uid://c7tqjcgda2jqt" path="res://data/curves/c_linear_out.tres" id="2_88jdk"]
 [ext_resource type="Curve" uid="uid://bu2qi3hki7opo" path="res://data/curves/c_linear_in_out.tres" id="3_cfx5s"]
+[ext_resource type="Curve" uid="uid://b3kjl1bbrx7fu" path="res://data/curves/c_ease_in_out.tres" id="4_rxwkl"]
 
 [node name="Flasher" type="HBoxContainer"]
 offset_right = 400.0
@@ -11,7 +12,8 @@ theme_override_constants/separation = 0
 script = ExtResource("1_tu17n")
 curves = Dictionary[int, Curve]({
 0: ExtResource("2_88jdk"),
-1: ExtResource("3_cfx5s")
+1: ExtResource("3_cfx5s"),
+2: ExtResource("4_rxwkl")
 })
 
 [node name="WidthContainer" type="VBoxContainer" parent="."]

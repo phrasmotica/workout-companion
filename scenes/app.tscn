@@ -93,7 +93,7 @@ unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 382)
 layout_mode = 2
-progress_curve = 1
+progress_curve = 2
 progress_param = 2
 
 [connection signal="pressed_start" from="KeyListener" to="." method="_on_key_listener_pressed_start"]

@@ -1,7 +1,7 @@
 @tool
 class_name Flasher extends HBoxContainer
 
-enum ProgressCurve { LINEAR_OUT, LINEAR_IN_OUT }
+enum ProgressCurve { LINEAR_OUT, LINEAR_IN_OUT, EASE_IN_OUT }
 
 enum ProgressParam { ALPHA, WIDTH, HEIGHT }
 

@@ -39,3 +39,6 @@ func to_finished() -> void:
 
 func is_ready() -> bool:
 	return state == State.READY
+
+func is_finished() -> bool:
+	return state == State.FINISHED

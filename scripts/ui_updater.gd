@@ -75,11 +75,15 @@ func to_countdown() -> void:
 		status_message.show()
 		status_message.message = StatusMessage.MessageType.GET_READY
 
+	if phase_counter:
+		phase_counter.stop()
+
 func to_finished() -> void:
 	if flasher:
 		flasher.hide()
+		flasher.stop()
 
-		print("to_finished: hid flasher")
+		print("to_finished: stopped flasher")
 
 	if status_message:
 		status_message.show()

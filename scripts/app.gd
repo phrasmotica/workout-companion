@@ -70,6 +70,9 @@ func to_finished() -> void:
 
 	state_machine.to_finished()
 
+func _can_start() -> bool:
+	return state_machine.is_ready() or state_machine.is_finished()
+
 func _on_flasher_flashed() -> void:
 	if Engine.is_editor_hint():
 		return
@@ -107,7 +110,7 @@ func _on_countdown_cancelled() -> void:
 	print("Countdown cancelled")
 
 func _on_key_listener_pressed_start() -> void:
-	if not state_machine.is_ready():
+	if not _can_start():
 		print("Cannot start - already in state %d" % state_machine.state)
 		return
 

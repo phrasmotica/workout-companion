@@ -4,17 +4,42 @@
 [ext_resource type="Curve" uid="uid://c7tqjcgda2jqt" path="res://data/curves/c_linear_out.tres" id="2_88jdk"]
 [ext_resource type="Curve" uid="uid://bu2qi3hki7opo" path="res://data/curves/c_linear_in_out.tres" id="3_cfx5s"]
 
-[node name="Flasher" type="ColorRect"]
-custom_minimum_size = Vector2(0, 400)
+[node name="Flasher" type="HBoxContainer"]
 offset_right = 400.0
 offset_bottom = 400.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0, 0.784314, 0.196078, 1)
+theme_override_constants/separation = 0
 script = ExtResource("1_tu17n")
 curves = Dictionary[int, Curve]({
 0: ExtResource("2_88jdk"),
 1: ExtResource("3_cfx5s")
 })
 
-[connection signal="resized" from="." to="." method="_on_resized"]
+[node name="WidthContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HeightSpacer" type="Control" parent="WidthContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="HeightContainer" type="VBoxContainer" parent="WidthContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="WidthContainer/HeightContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.784314, 0.196078, 1)
+
+[node name="WidthSpacer" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0

@@ -30,6 +30,7 @@ var flasher: Flasher
 func _ready() -> void:
 	if state_machine:
 		state_machine.entered_countdown.connect(to_countdown)
+		state_machine.entered_finished.connect(to_finished)
 		state_machine.entered_in_progress.connect(to_in_progress)
 		state_machine.entered_pausing.connect(to_pausing)
 		state_machine.entered_ready.connect(to_ready)
@@ -73,6 +74,23 @@ func to_countdown() -> void:
 	if status_message:
 		status_message.show()
 		status_message.message = StatusMessage.MessageType.GET_READY
+
+func to_finished() -> void:
+	if flasher:
+		flasher.hide()
+
+		print("to_finished: hid flasher")
+
+	if status_message:
+		status_message.show()
+		status_message.message = StatusMessage.MessageType.FINISHED
+
+	if rep_counter:
+		rep_counter.hide()
+		rep_counter.stop()
+
+	if phase_counter:
+		phase_counter.complete()
 
 func to_in_progress() -> void:
 	if countdown:

@@ -1,7 +1,7 @@
 @tool
 class_name StateMachine extends Node
 
-enum State { READY, COUNTDOWN, IN_PROGRESS, PAUSING }
+enum State { READY, COUNTDOWN, IN_PROGRESS, PAUSING, FINISHED }
 
 @export
 var state := State.READY
@@ -10,6 +10,7 @@ signal entered_ready
 signal entered_countdown
 signal entered_in_progress
 signal entered_pausing(duration_seconds: float)
+signal entered_finished
 
 func to_ready() -> void:
 	state = State.READY
@@ -30,3 +31,11 @@ func to_pausing(duration_seconds: float) -> void:
 	state = State.PAUSING
 
 	entered_pausing.emit(duration_seconds)
+
+func to_finished() -> void:
+	state = State.FINISHED
+
+	entered_finished.emit()
+
+func is_ready() -> bool:
+	return state == State.READY

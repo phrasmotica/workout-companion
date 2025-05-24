@@ -65,8 +65,16 @@ func to_ready() -> void:
 
 	state_machine.to_ready()
 
+func to_finished() -> void:
+	print("Finished")
+
+	state_machine.to_finished()
+
 func _on_flasher_flashed() -> void:
 	if Engine.is_editor_hint():
+		return
+
+	if workout_state.is_finished():
 		return
 
 	if workout_state.is_set_finished():
@@ -78,7 +86,7 @@ func _on_flasher_flashed() -> void:
 			workout_state.to_next_phase()
 
 			if workout_state.is_finished():
-				to_ready()
+				to_finished()
 			else:
 				ui_updater.inject_phase(workout_state.get_phase())
 
@@ -99,6 +107,10 @@ func _on_countdown_cancelled() -> void:
 	print("Countdown cancelled")
 
 func _on_key_listener_pressed_start() -> void:
+	if not state_machine.is_ready():
+		print("Cannot start - already in state %d" % state_machine.state)
+		return
+
 	workout_state.reset_all()
 
 	if start_immediately:

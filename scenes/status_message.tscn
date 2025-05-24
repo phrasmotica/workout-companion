@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3ny8dq1xas7h"]
+[gd_scene load_steps=3 format=3 uid="uid://c3ny8dq1xas7h"]
 
 [ext_resource type="Script" uid="uid://b5wq6ocoud721" path="res://scripts/status_message.gd" id="1_0pn5e"]
+[ext_resource type="Theme" uid="uid://pxiigjg7x2e4" path="res://ui_theme.tres" id="1_8synh"]
 
 [node name="StatusMessage" type="VBoxContainer"]
+theme = ExtResource("1_8synh")
 script = ExtResource("1_0pn5e")
+message = 3
 
 [node name="PressToStartLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -26,4 +29,12 @@ visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Pausing..."
+horizontal_alignment = 1
+
+[node name="FinishedLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Finished! Well done!"
 horizontal_alignment = 1

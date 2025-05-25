@@ -1,7 +1,7 @@
 @tool
 extends MarginContainer
 
-enum IconChoice { TICK, PLAY, PAUSE }
+enum IconChoice { TICK, PLAY, PAUSE, NEXT }
 
 @export
 var icon := IconChoice.TICK:

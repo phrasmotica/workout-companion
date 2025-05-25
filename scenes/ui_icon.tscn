@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://p2mgbqcfh25u"]
+[gd_scene load_steps=6 format=3 uid="uid://p2mgbqcfh25u"]
 
 [ext_resource type="Script" uid="uid://cmjvxs7tqgvb" path="res://scripts/ui_icon.gd" id="1_lujib"]
 [ext_resource type="Texture2D" uid="uid://c8nb5081if14l" path="res://images/check-mark.png" id="1_m4p65"]
 [ext_resource type="Texture2D" uid="uid://ypxc0qeeq7ss" path="res://images/play-button.png" id="3_r4m26"]
 [ext_resource type="Texture2D" uid="uid://dfu84020lqrq0" path="res://images/pause-button.png" id="4_elkmu"]
+[ext_resource type="Texture2D" uid="uid://bi527gtymefpa" path="res://images/next-button.png" id="5_elkmu"]
 
 [node name="UIIcon" type="MarginContainer"]
 custom_minimum_size = Vector2(32, 32)
@@ -18,7 +19,8 @@ margin = 5
 icons_dictionary = Dictionary[int, Texture2D]({
 0: ExtResource("1_m4p65"),
 1: ExtResource("3_r4m26"),
-2: ExtResource("4_elkmu")
+2: ExtResource("4_elkmu"),
+3: ExtResource("5_elkmu")
 })
 
 [node name="TextureRect" type="TextureRect" parent="."]

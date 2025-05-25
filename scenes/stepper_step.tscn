@@ -9,7 +9,6 @@ theme = ExtResource("1_p0yhv")
 theme_override_constants/separation = 0
 script = ExtResource("2_8v6er")
 show_leading_line = true
-content = 2
 default_colour = Color(0.8, 0.8, 0.8, 1)
 completed_colour = Color(0, 0.705882, 0, 1)
 
@@ -28,7 +27,6 @@ theme_type_variation = &"FutureStepperPanelContainer"
 
 [node name="Label" type="Label" parent="PanelContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"StepperStepLabel"
@@ -37,4 +35,11 @@ horizontal_alignment = 1
 
 [node name="TickIcon" parent="PanelContainer" instance=ExtResource("3_d4tup")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
+
+[node name="SkipIcon" parent="PanelContainer" instance=ExtResource("3_d4tup")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+icon = 3

@@ -1,9 +1,9 @@
 @tool
 class_name StepperStep extends HBoxContainer
 
-enum Look { FUTURE, CURRENT, COMPLETED }
+enum Look { FUTURE, CURRENT, COMPLETED, SKIPPED }
 
-enum Content { NONE, TEXT, TICK }
+enum Content { NONE, TEXT, TICK, SKIP }
 
 @export
 var number := 1:
@@ -59,6 +59,9 @@ var label: Label = %Label
 @onready
 var tick_icon: Control = %TickIcon
 
+@onready
+var skip_icon: Control = %SkipIcon
+
 func _refresh() -> void:
     if leading_line:
         leading_line.visible = show_leading_line
@@ -74,6 +77,9 @@ func _refresh() -> void:
     if tick_icon:
         tick_icon.visible = content == Content.TICK
 
+    if skip_icon:
+        skip_icon.visible = content == Content.SKIP
+
 func _compute_line_colour() -> Color:
     if look == Look.COMPLETED:
         return completed_colour
@@ -86,5 +92,8 @@ func _compute_panel_style() -> StringName:
 
     if look == Look.COMPLETED:
         return "CompletedStepperPanelContainer"
+
+    if look == Look.SKIPPED:
+        return "SkippedStepperPanelContainer"
 
     return "StepperPanelContainer"

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://pxiigjg7x2e4"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://pxiigjg7x2e4"]
 
 [ext_resource type="SystemFont" uid="uid://dn35gdu8qvgys" path="res://ui_font.tres" id="1_touxu"]
 
@@ -35,6 +35,17 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbeor"]
+bg_color = Color(0.807843, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_potcg"]
 bg_color = Color(0.807988, 0.536128, 9.62615e-07, 1)
 border_width_left = 2
@@ -54,6 +65,8 @@ FutureStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_touxu")
 HighlightedStepperPanelContainer/base_type = &"PanelContainer"
 HighlightedStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_2pn01")
 Label/fonts/font = ExtResource("1_touxu")
+SkippedStepperPanelContainer/base_type = &"PanelContainer"
+SkippedStepperPanelContainer/styles/panel = SubResource("StyleBoxFlat_tbeor")
 StepperFooterLabel/base_type = &"Label"
 StepperFooterLabel/font_sizes/font_size = 22
 StepperFooterLabel/fonts/font = ExtResource("1_touxu")

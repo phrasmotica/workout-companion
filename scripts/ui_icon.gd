@@ -36,6 +36,9 @@ var icons_dictionary: Dictionary[IconChoice, Texture2D] = {}:
 @onready
 var texture_rect: TextureRect = %TextureRect
 
+func _ready() -> void:
+	_refresh()
+
 func _refresh() -> void:
 	if texture_rect:
 		texture_rect.visible = not hide_icon

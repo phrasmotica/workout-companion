@@ -81,15 +81,15 @@ func _refresh() -> void:
 
         step.number = starting_number + i
         step.show_leading_line = i > 0
-        step.look = _compute_step_look(i)
+        step.status = _compute_step_status(i)
         step.content = _compute_step_content(i)
 
     if steps.size() > step_count:
         for i in range(step_count, steps.size()):
-            print("Cleaning up child %d" % i)
+            # print("Cleaning up child %d" % i)
             steps_parent.get_child(i).queue_free()
 
-func _compute_step_look(index: int) -> StepperStep.Look:
+func _compute_step_status(index: int) -> StepperStep.Status:
     if index < current_step:
         return StepperStep.Look.COMPLETED
 

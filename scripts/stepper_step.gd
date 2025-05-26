@@ -47,6 +47,13 @@ var completed_colour: Color:
 
         _refresh()
 
+@export
+var skipped_colour: Color:
+    set(value):
+        skipped_colour = value
+
+        _refresh()
+
 @onready
 var leading_line: ColorRect = %LeadingLine
 
@@ -83,6 +90,9 @@ func _refresh() -> void:
 func _compute_line_colour() -> Color:
     if status == Status.COMPLETED:
         return completed_colour
+
+    if status == Status.SKIPPED:
+        return skipped_colour
 
     return default_colour
 

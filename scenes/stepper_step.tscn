@@ -11,6 +11,7 @@ script = ExtResource("2_8v6er")
 show_leading_line = true
 default_colour = Color(0.8, 0.8, 0.8, 1)
 completed_colour = Color(0, 0.705882, 0, 1)
+skipped_colour = Color(0.807843, 0, 0, 1)
 
 [node name="LeadingLine" type="ColorRect" parent="."]
 unique_name_in_owner = true

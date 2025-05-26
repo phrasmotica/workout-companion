@@ -23,16 +23,9 @@ var starting_number := 1:
         _refresh()
 
 @export
-var current_step := -1:
+var statuses: Array[StepperStep.Status] = []:
     set(value):
-        current_step = clampi(value, -1, step_count)
-
-        _refresh()
-
-@export
-var completed_step := -1:
-    set(value):
-        completed_step = clampi(value, -1, current_step)
+        statuses = value
 
         _refresh()
 
@@ -45,18 +38,25 @@ var steps_parent: Control = %StepsContainer
 @onready
 var footer: Label = %Footer
 
+var _current_step := -1
+
 func _ready() -> void:
     _refresh()
 
 func inc() -> void:
-    current_step += 1
+    _current_step += 1
+    statuses[_current_step] = StepperStep.Status.CURRENT
 
 func complete() -> void:
-    completed_step += 1
+    statuses[_current_step] = StepperStep.Status.COMPLETED
 
 func stop() -> void:
-    current_step = -1
-    completed_step = -1
+    var new_statuses: Array[StepperStep.Status] = []
+
+    new_statuses.resize(step_count)
+    new_statuses.fill(StepperStep.Status.FUTURE)
+
+    statuses = new_statuses
 
 func _refresh() -> void:
     if footer:
@@ -82,7 +82,7 @@ func _refresh() -> void:
         step.number = starting_number + i
         step.show_leading_line = i > 0
         step.status = _compute_step_status(i)
-        step.content = _compute_step_content(i)
+        step.content = _compute_step_content(step.status)
 
     if steps.size() > step_count:
         for i in range(step_count, steps.size()):
@@ -90,25 +90,16 @@ func _refresh() -> void:
             steps_parent.get_child(i).queue_free()
 
 func _compute_step_status(index: int) -> StepperStep.Status:
-    if index < current_step:
-        return StepperStep.Look.COMPLETED
+    if index < 0 or index >= statuses.size():
+        return StepperStep.Status.FUTURE
 
-    if index == current_step:
-        if index > completed_step:
-            return StepperStep.Look.CURRENT
+    return statuses[index]
 
-        return StepperStep.Look.COMPLETED
-
-    return StepperStep.Look.FUTURE
-
-func _compute_step_content(index: int) -> StepperStep.Content:
-    if index < current_step:
+func _compute_step_content(status: StepperStep.Status) -> StepperStep.Content:
+    if status == StepperStep.Status.COMPLETED:
         return StepperStep.Content.TICK
 
-    if index == current_step:
-        if index > completed_step:
-            return StepperStep.Content.TEXT
-
-        return StepperStep.Content.TICK
+    if status == StepperStep.Status.SKIPPED:
+        return StepperStep.Content.SKIP
 
     return StepperStep.Content.TEXT

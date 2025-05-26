@@ -11,6 +11,7 @@ theme = ExtResource("1_y5723")
 theme_override_constants/separation = 0
 script = ExtResource("2_k1r7q")
 step_count = 4
+statuses = Array[int]([2, 3, 1, 0])
 
 [node name="StepsContainer" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -22,14 +23,19 @@ alignment = 1
 [node name="StepperStep1" parent="StepsContainer" instance=ExtResource("2_xv8sx")]
 layout_mode = 2
 show_leading_line = false
+status = 2
+content = 2
 
 [node name="StepperStep2" parent="StepsContainer" instance=ExtResource("2_xv8sx")]
 layout_mode = 2
 number = 2
+status = 3
+content = 3
 
 [node name="StepperStep3" parent="StepsContainer" instance=ExtResource("2_xv8sx")]
 layout_mode = 2
 number = 3
+status = 1
 
 [node name="StepperStep4" parent="StepsContainer" instance=ExtResource("2_xv8sx")]
 layout_mode = 2

@@ -19,21 +19,16 @@ var starting_number := 1:
         _refresh()
 
 @export
-var current_step := -1:
+var statuses: Array[StepperStep.Status] = []:
     set(value):
-        current_step = clampi(value, -1, _get_step_count())
-
-        _refresh()
-
-@export
-var completed_step := -1:
-    set(value):
-        completed_step = clampi(value, -1, current_step)
+        statuses = value
 
         _refresh()
 
 @onready
 var stepper_scene: PackedScene = preload("res://scenes/stepper.tscn")
+
+var _current_step := -1
 
 func _ready() -> void:
     _refresh()
@@ -45,14 +40,23 @@ func _get_step_count() -> int:
     return workout_provider.get_step_count() if workout_provider else 0
 
 func inc() -> void:
-    current_step += 1
+    _current_step += 1
+    statuses[_current_step] = StepperStep.Status.CURRENT
+
+    _refresh()
 
 func complete() -> void:
-    completed_step += 1
+    statuses[_current_step] = StepperStep.Status.COMPLETED
+
+    _refresh()
 
 func stop() -> void:
-    current_step = -1
-    completed_step = -1
+    var new_statuses: Array[StepperStep.Status] = []
+
+    new_statuses.resize(_get_step_count())
+    new_statuses.fill(StepperStep.Status.FUTURE)
+
+    statuses = new_statuses
 
 func _refresh() -> void:
     if not stepper_scene:
@@ -80,19 +84,20 @@ func _refresh() -> void:
             add_child(stepper)
             stepper.owner = self
 
+        stepper.stop()
+
         if phase_count > i:
             var phase := workout_provider.get_phase(i)
 
             stepper.footer_text = phase.phase_name
             stepper.starting_number = current_starting_number
             stepper.step_count = phase.sets
-            stepper.current_step = current_step - step_offset
-            stepper.completed_step = completed_step - step_offset
+            stepper.statuses = statuses.slice(step_offset, step_offset + phase.sets)
 
             step_offset += phase.sets
             current_starting_number += phase.sets
 
     if steppers.size() > phase_count:
         for i in range(phase_count, steppers.size()):
-            print("Cleaning up child %d" % i)
+            # print("Cleaning up child %d" % i)
             get_child(i).queue_free()

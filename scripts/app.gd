@@ -23,6 +23,8 @@ var workout_state: WorkoutState
 @export
 var ui_updater: UIUpdater
 
+var _is_mouse_visible := false
+
 func _ready() -> void:
 	assert(state_machine)
 	assert(ui_updater)
@@ -124,3 +126,11 @@ func _on_key_listener_pressed_start() -> void:
 		print("Doing countdown before starting")
 
 		to_countdown()
+
+func _on_key_listener_pressed_toggle_mouse_visibility() -> void:
+	if _is_mouse_visible:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	_is_mouse_visible = not _is_mouse_visible

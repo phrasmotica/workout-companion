@@ -97,6 +97,7 @@ progress_curve = 2
 progress_param = 2
 
 [connection signal="pressed_start" from="KeyListener" to="." method="_on_key_listener_pressed_start"]
+[connection signal="pressed_toggle_mouse_visibility" from="KeyListener" to="." method="_on_key_listener_pressed_toggle_mouse_visibility"]
 [connection signal="cancelled" from="MarginContainer/VBoxContainer/MarginContainer/Countdown" to="." method="_on_countdown_cancelled"]
 [connection signal="finished" from="MarginContainer/VBoxContainer/MarginContainer/Countdown" to="." method="_on_countdown_finished"]
 [connection signal="cancelled" from="MarginContainer/VBoxContainer/MarginContainer/PauseCountdown" to="." method="_on_countdown_cancelled"]
